@@ -1,0 +1,18 @@
+.icones-nav {
+    width: 80%;
+}
+
+.notifications {
+    display: inline-block;
+    position: relative;
+}
+
+.circle {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background: blue;
+}
