@@ -4,7 +4,7 @@ export class Book {
     nome: string
     autor: string
     descricao: string
-    preco: bigint
+    preco: number
     ImagemUrl: string
     DataPublicacao: Date
 }
