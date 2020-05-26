@@ -1,12 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { LOCALE_ID } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { BookInfoComponent } from './component/book-info/book-info.component';
-import { BookListComponent } from './component/book-list/book-list.component';
+import { BookListComponent } from './component/book-list/book-list.component'
 import { FooterComponent } from './component/template/footer/footer.component';
 import { HeaderComponent } from './component/template/header/header.component';
-import { CardComponent } from './component/template/card/card.component';
+import { AppRoutingRoutingModule } from './app-routing-routing.module';
+
+import { registerLocaleData } from '@angular/common';
+import ptBr from '@angular/common/locales/pt';
+import { NavComponent } from './component/template/nav/nav.component';
+registerLocaleData(ptBr)
 
 @NgModule({
   declarations: [
@@ -15,12 +21,15 @@ import { CardComponent } from './component/template/card/card.component';
     BookListComponent,
     FooterComponent,
     HeaderComponent,
-    CardComponent 
-   ],
-  imports: [
-    BrowserModule
+    NavComponent 
   ],
-  providers: [],
+  imports: [
+    BrowserModule,
+    AppRoutingRoutingModule
+  ],
+  providers: [
+    {provide: LOCALE_ID, useValue: 'pt-BR'}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
