@@ -1,1 +1,48 @@
-<p>book-list works!</p>
+<div class="container-fluid">
+    <div class="row mt-5 text-center text-lg-left">
+        <div class="col-lg-3 col-md-4 col-6 text-center mb-3" *ngFor="let book of books">
+            <div class="card-deck">
+                <div class="card">
+                    <a href="/book/1">
+                        <img class="img-fluid img-thumbnail card-img-top" src="{{book.ImagemUrl}}" alt="">
+                    </a>
+                    <div class="card-body">
+                        <a href="/book/1">
+                            <h5 class="card-title">{{book.nome}}
+                                <p class="card-text" style="font-size: 1rem;">
+                                    <small class="text-muted">
+                                        Livro por
+                                        <strong>
+                                            {{book.autor}}
+                                        </strong>
+                                    </small>
+                                </p>
+                            </h5>
+                        </a>
+                        <p class="mb-2 d-flex justify-content-center">
+                            <!-- <del class="mr-2 text-muted" style="font-size: 11pt;"> R$ 260 </del> -->
+                            <span class="text-muted"
+                                style="font-size: 1.4rem; font-weight: 300;">{{book.preco | currency:'BRL':true}}</span>
+                        </p>
+
+                        <a href="#" class="btn btn-primary">Add to Car</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-end">
+        <nav aria-label="...">
+            <ul class="pagination mr-3">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
