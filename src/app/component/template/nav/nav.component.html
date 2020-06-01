@@ -2,12 +2,9 @@
 
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="list-group list-group-flush ju">
-        <a href="#" class="list-group-item list-group-item-action bg-light">Biografias</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Folclore</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Literatura Brasileira</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Coleções</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Literatura Estrangeira</a>
+      <div class="list-group list-group-flush ju" >
+        <a class="list-group-item list-group-item-action bg-light" name="link" style="cursor: pointer;"
+          *ngFor="let categoria of categorias" routerLink="/book/categoria/{{categoria.id}}">{{categoria.nome}}</a>
       </div>
     </div>
 
