@@ -1,10 +1,13 @@
 export class Book {
     
     id: number
-    nome: string
+    titulo: string
     autor: string
+    editora: string
     descricao: string
-    preco: number
-    ImagemUrl: string
-    DataPublicacao: Date
+    idioma: string
+    link: string
+    imagemURL: string
+    dataPublicacao: string
+
 }
