@@ -1,3 +1,4 @@
+import { BookCategoriaComponent } from './component/book-categoria/book-categoria.component';
 import { BookListComponent } from './component/book-list/book-list.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -9,8 +10,11 @@ const routes: Routes = [
   },
   {
     path: 'book/:id', component: BookInfoComponent
+  },
+  {
+    path: 'book/categoria/:id', component: BookCategoriaComponent
   }
-];
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
