@@ -17,20 +17,24 @@ export class BookService {
     return this.httpClient.get<Book[]>(this.baseUrl);
   }
 
-  obterLivroPorLink(id:string): Observable<Book> {
-    return  this.httpClient.get<Book>(this.baseUrl + "/search/" + id)
+  obterLivroPorLink(link:string): Observable<Book> {
+    return  this.httpClient.get<Book>(this.baseUrl + "/search/" + link)
   }
 
   obterTodasAsCategorias(): Observable<Categoria[]> {
     return this.httpClient.get<Categoria[]>(this.baseUrl + "/categorias")
   }
 
-  obterLivroPorCategoria(id:string): Observable<Book[]> {
+  obterLivrosPorCategoria(id:string): Observable<Book[]> {
     return this.httpClient.get<Book[]>(this.baseUrl + "/categorias/" + id)
   }
 
   obterLivroPorId(id:string): Observable<Book> {
     return this.httpClient.get<Book>(this.baseUrl + "/" + id)
+  }
+
+  obterCategoriaPorLink(link:string): Observable<Categoria> {
+    return this.httpClient.get<Categoria>(this.baseUrl + "/search/categorias/" + link)
   }
   
 
