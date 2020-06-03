@@ -1,3 +1,4 @@
+import { Categoria } from './Categoria';
 export class Book {
     
     id: number
@@ -9,5 +10,7 @@ export class Book {
     link: string
     imagemURL: string
     dataPublicacao: string
+    dataCriacao:string
+    categoria: Categoria
 
 }
