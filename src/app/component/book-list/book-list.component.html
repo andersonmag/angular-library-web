@@ -3,11 +3,15 @@
         <div class="col-lg-3 col-md-4 col-6 text-center mb-3" *ngFor="let book of books">
             <div class="card-deck">
                 <div class="card">
-                    <a [routerLink]="[ '/book', book.id ]">
-                        <img class="img-fluid img-thumbnail card-img-top" src="{{book.imagemURL}}" alt="">
+                    <a [routerLink]="[ '/book', book.link ]">
+                        <img  [hidden]="loading"
+                        (load)="this.loading = false;" class="img-fluid img-thumbnail card-img-top" src="{{book.imagemURL}}" alt="">
+                        <div class="spine spinner-grow text-success" role="status" [hidden]="!loading">
+                            <span class="sr-only d-flex justify-content-center">Loading...</span>
+                          </div>
                     </a>
                     <div class="card-body">
-                        <a [routerLink]="[ '/book', book.id ]">
+                        <a [routerLink]="[ '/book', book.link ]">
                             <span class="card-title" style="font-size: 0.9rem;" title="{{book.titulo}}">{{book.titulo | slice:0:50}}                                                  
                                 <span *ngIf="book.titulo.length > 50">...</span>
                                 <p class="card-text" style="font-size: 0.9rem;">
@@ -33,7 +37,7 @@
         </div>
     </div>
 
-    <div class="row justify-content-end">
+    <div class="row justify-content-end" *ngIf="books.length > 8">
         <nav aria-label="...">
             <ul class="pagination mr-3">
                 <li class="page-item disabled">

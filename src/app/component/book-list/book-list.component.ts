@@ -11,6 +11,11 @@ import { Book } from 'src/app/model/book';
 export class BookListComponent implements OnInit {
 
   books: Book[]
+  loading: boolean = true
+
+  onLoad() {
+    this.loading = false;
+  }
 
   constructor(private bookService: BookService, private routerActive: ActivatedRoute) { }
 
