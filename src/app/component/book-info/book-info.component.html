@@ -1,8 +1,10 @@
 <div class="container">
-  <nav aria-label="breadcrumb w-5" style="width: 280px;">
-    <ol class="breadcrumb" style="background-color: #FFF;">
+
+  <nav aria-label="breadcrumb w-5">
+    <ol class="breadcrumb" style="background-color: #fafafa">
+      <li class="breadcrumb-item"><a routerLink="/">Inicio</a></li>
       <li class="breadcrumb-item"><a routerLink="/">Livros</a></li>
-      <li class="breadcrumb-item active" aria-current="page">{{book.id}}</li>
+      <li class="breadcrumb-item active" aria-current="page">{{book.titulo}}</li>
     </ol>
   </nav>
   <div class="row justify-content-center d-flex">
@@ -14,15 +16,20 @@
 
       <hr>
       <!-- Date/Time -->
-      <p>Criado em January 1, 2019 at 12:00 PM</p>
+      <p>Criado em {{book.dataCriacao}}</p>
 
       <hr>
 
       <div class="row">
 
         <div class="col-md-6 col-sm-12">
-          <img class="img-fluid rounded mb-4 mb-lg-0" src="{{book.imagemURL}}" alt="">
+          <img class="img-fluid rounded mb-4 mb-lg-0" src="{{book.imagemURL}}" alt="" [hidden]="loading"
+            (load)="this.loading = false;">
+          <div class="spine spinner-grow text-success" role="status" [hidden]="!loading">
+            <span class="sr-only d-flex justify-content-center">Loading...</span>
+          </div>
         </div>
+
         <!-- /.col-lg-8 -->
         <div class="col-md-6 col-sm-12">
           <span class=" mt-4 text-muted">Um livro de
@@ -50,85 +57,27 @@
   <h2 class="m-4 text-secondary text-justify">Relacionados: </h2>
 
   <div class="row">
-    <div class="col-md-3 mb-5">
+    <div class="col-md-3 mb-5" *ngFor="let bookIt of books">
       <div class="card">
-        <a href="" class="justify-content-center d-flex text-center">
+        <a href="/book/{{bookIt.link}}" class="justify-content-center d-flex text-center">
           <img class="img-thumbnail card-img-top"
-            src="https://images-americanas.b2w.io/produtos/imagens/5326946/5326947_1GG.jpg" alt=""
+            src="{{bookIt.imagemURL}}" alt=""
             style="width: 200px;">
         </a>
         <div class="card-body text-center">
-          <a href="">
-            <span class="card-title text-center" style="font-size: 1.2rem;">aidjiwaiojhwiodjijwijdw
+          <a [routerLink]="[ '/book', bookIt.link ]">
+            <span class="card-title text-center" style="font-size: 0.8rem;">{{bookIt.titulo | slice:0:50}}                                                  
+              <span *ngIf="bookIt.titulo.length > 50">...</span>
               <p class="card-text" style="font-size: 1rem;">
                 <small class="text-muted">
                   Livro por
                   <strong>
-                    testetetse
+                    {{bookIt.autor}}
                   </strong>
                 </small>
               </p>
             </span>
           </a>
-          <p class="mb-2 d-flex justify-content-center">
-            <!-- <del class="mr-2 text-muted" style="font-size: 11pt;"> R$ 260 </del> -->
-            <span class="text-muted" style="font-size: 1.4rem; font-weight: 300;">{{29.90 | currency:'BRL':true}}</span>
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3 mb-5">
-      <div class="card">
-        <a href="" class="justify-content-center d-flex text-center">
-          <img class="img-thumbnail card-img-top"
-            src="https://images-americanas.b2w.io/produtos/imagens/5326946/5326947_1GG.jpg" alt=""
-            style="width: 200px;">
-        </a>
-        <div class="card-body text-center">
-          <a href="">
-            <span class="card-title text-center" style="font-size: 1.2rem;">aidjiwaiojhwiodjijwijdw
-              <p class="card-text" style="font-size: 1rem;">
-                <small class="text-muted">
-                  Livro por
-                  <strong>
-                    testetetse
-                  </strong>
-                </small>
-              </p>
-            </span>
-          </a>
-          <p class="mb-2 d-flex justify-content-center">
-            <!-- <del class="mr-2 text-muted" style="font-size: 11pt;"> R$ 260 </del> -->
-            <span class="text-muted" style="font-size: 1.4rem; font-weight: 300;">{{29.90 | currency:'BRL':true}}</span>
-          </p>
-        </div>
-      </div>
-    </div>
-    <!-- /.col-md-4 -->
-    <div class="col-md-3 mb-5">
-      <div class="card">
-        <a href="" class="justify-content-center d-flex text-center">
-          <img class="img-thumbnail card-img-top"
-            src="https://images-americanas.b2w.io/produtos/imagens/5326946/5326947_1GG.jpg" alt=""
-            style="width: 200px;">
-        </a>
-        <div class="card-body text-center">
-          <a href="">
-            <span class="card-title text-center" style="font-size: 1.2rem;">aidjiwaiojhwiodjijwijdw
-              <p class="card-text" style="font-size: 1rem;">
-                <small class="text-muted">
-                  Livro por
-                  <strong>
-                    testetetse
-                  </strong>
-                </small>
-              </p>
-            </span>
-          </a>
-          <p class="mb-2 d-flex justify-content-center">
-            <!-- <del class="mr-2 text-muted" style="font-size: 11pt;"> R$ 260 </del> -->
-            <span class="text-muted" style="font-size: 1.4rem; font-weight: 300;">{{29.90 | currency:'BRL':true}}</span>
-          </p>
         </div>
       </div>
     </div>
