@@ -20,6 +20,8 @@
 
       <hr>
 
+      <!-- Informações sobre o livro -->
+
       <div class="row">
 
         <div class="col-md-6 col-sm-12">
@@ -30,7 +32,6 @@
           </div>
         </div>
 
-        <!-- /.col-lg-8 -->
         <div class="col-md-6 col-sm-12">
           <span class=" mt-4 text-muted">Um livro de
             <strong>
@@ -51,7 +52,31 @@
     </div>
 
   </div>
-  <!-- /.row -->
+
+  <div class="row d-flex justify-content-center">
+    <table class="table table-striped table-hover ">
+      <tbody>
+        <tr>
+          <th scope="col">Título</th>
+          <td scope="row">{{book.titulo + ' (Publicado em ' + book.dataPublicacao + ')'}}</td>
+        </tr>
+        <tr>
+          <th scope="col">Autor</th>
+          <td scope="row">{{book.autor}}</td>
+        </tr>
+        <tr>
+          <th scope="col">Editora</th>
+          <td scope="row">{{book.editora}}</td>
+        </tr>
+        <tr>
+          <th scope="col">Idioma</th>
+          <td scope="row">{{book.idioma}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Relacionados -->
 
   <hr class="py-3 my-5">
   <h2 class="m-4 text-secondary text-justify">Relacionados: </h2>
@@ -60,13 +85,11 @@
     <div class="col-md-3 mb-5" *ngFor="let bookIt of books">
       <div class="card">
         <a href="/book/{{bookIt.link}}" class="justify-content-center d-flex text-center">
-          <img class="img-thumbnail card-img-top"
-            src="{{bookIt.imagemURL}}" alt=""
-            style="width: 200px;">
+          <img class="img-thumbnail card-img-top" src="{{bookIt.imagemURL}}" alt="" style="width: 200px;">
         </a>
         <div class="card-body text-center">
           <a [routerLink]="[ '/book', bookIt.link ]">
-            <span class="card-title text-center" style="font-size: 0.8rem;">{{bookIt.titulo | slice:0:50}}                                                  
+            <span class="card-title text-center" style="font-size: 0.8rem;">{{bookIt.titulo | slice:0:50}}
               <span *ngIf="bookIt.titulo.length > 50">...</span>
               <p class="card-text" style="font-size: 1rem;">
                 <small class="text-muted">
