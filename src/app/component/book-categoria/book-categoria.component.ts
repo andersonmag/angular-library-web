@@ -14,6 +14,7 @@ export class BookCategoriaComponent implements OnInit {
 
   books: Book[]
   categoria: Categoria
+  loading: boolean = true
 
   constructor(private bookService: BookService,
     private router: Router, private activatedRoute: ActivatedRoute) { }
