@@ -1,18 +1,36 @@
 <div class="container">
+  <div class="row">
 
-  <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
-    <a routerLink="/" style="color: darkgreen;">
-      Library Store
+    <div class="col-md-3 col-sm-12" style="display: flex;">
+      <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0" style="font-family: 'Gill Sans', 
+  'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; display: flex;">
+        <a routerLink="/" style="color: darkgreen;">
+          Library Store
 
-      <span class="material-icons" style="font-size: 2.5rem;">
-        local_library
-      </span>
-    </a>
-  </h1>
+          <span class="material-icons" style="font-size: 2.5rem;">
+            local_library
+          </span>
+        </a>
+      </h1>
 
-  <div class="row d-flex justify-content-right">
+    </div>
+
+    <div class="col-md-4">
+
+      <div class="bmd-form-group bmd-collapse-inline pull-xs-right v-middle mt-4">
+        <button class="btn bmd-btn-icon" for="search">
+          <i class="material-icons ">search</i>
+        </button>
+        <span id="collapse-search" class="collapse show">
+          <input class="form-control" type="text" id="search" placeholder="Busque por livros..."
+            style="font-size: 1.4rem;">
+        </span>
+      </div>
+    </div>
+
 
   </div>
+
   <hr class="mt-2 ">
 
 </div>

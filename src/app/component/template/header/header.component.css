@@ -16,3 +16,23 @@
     border-radius: 10px;
     background: blue;
 }
+
+.search {
+    display: flex;
+    justify-content: center;
+    vertical-align: middle;
+}
+
+.search .search-icon {
+    font-size: 2rem;
+}
+.icon {
+    margin-top: 7%;
+    padding: 4px;
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+
+.icon:hover {
+    color: darkcyan;
+}
