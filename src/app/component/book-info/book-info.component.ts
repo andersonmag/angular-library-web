@@ -18,7 +18,7 @@ export class BookInfoComponent implements OnInit {
   books: Book[]
 
   constructor(private bookService: BookService,
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute, private router:Router) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -26,11 +26,18 @@ export class BookInfoComponent implements OnInit {
 
       this.bookService.obterLivroPorLink(link).subscribe(book => {
         this.book = book
-        this.bookService.obterLivrosPorCategoria(book.categoria.id + '').subscribe(books => {
-          var index = books.indexOf(book)
-          books.splice(index, 1)
-          this.books = books
+        this.bookService.obterLivrosPorCategoria(this.book.categoria.link).subscribe(books => {
+          this.books = books['content']
+          let index
+          for (let i = 0; i < this.books.length; i++) {
+            if (this.books[i].id == this.book.id)
+              index = i
+          }
+          console.log(index)
+          this.books.splice(index, 1)
         })
+      }, (err) => {
+        this.router.navigate(['/'])
       })
     })
 
