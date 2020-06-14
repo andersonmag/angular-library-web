@@ -1,5 +1,14 @@
-<footer class="py-5 bg-dark">
+<footer class="py-3 bg-dark">
     <div class="container">
-        <p class="text-center text-white">Copyright &copy; Anderson 2020</p>
+
+        <div class="d-flex justify-content-center">
+            <p class="text-center text-white" style="padding-top: 10px;">Copyright &copy; AndersonDev {{date}}</p>
+
+            <div class="pl-5" >
+                <a *ngFor="let icone of icones" href="{{icone.link}}" style="text-decoration: none;" target="blanck">
+                    <i class="{{icone.class}}"></i>
+                </a>
+            </div>
+        </div>
     </div>
 </footer>
