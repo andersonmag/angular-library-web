@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  q: string = 'soft'
+
+  constructor(private route: Router) { }
 
   ngOnInit(): void {
+  }
+
+  teste(event): void {
+    this.route.navigate(['/book/search/' + event.target.value])
   }
 
 }
