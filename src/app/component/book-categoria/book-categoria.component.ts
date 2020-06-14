@@ -22,12 +22,11 @@ export class BookCategoriaComponent implements OnInit {
   ngOnInit(): void {
 
     this.activatedRoute.params.subscribe(params => {
-      const id = params['id'];
-      this.bookService.obterCategoriaPorLink(id).subscribe(categoria => {
-        this.bookService.obterLivrosPorCategoria(categoria.id + '') .subscribe(books => {
-          this.books = books
+      const link = params['link'];
+        this.bookService.obterLivrosPorCategoria(link) .subscribe(books => {
+          this.books = books['content']
+          this.categoria = this.books[0].categoria
         })
-      });
     });
 
   }
