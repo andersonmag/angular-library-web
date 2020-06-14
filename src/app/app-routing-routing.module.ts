@@ -1,3 +1,4 @@
+import { BookSearchComponent } from './component/book-search/book-search.component';
 import { BookCategoriaComponent } from './component/book-categoria/book-categoria.component';
 import { BookListComponent } from './component/book-list/book-list.component';
 import { NgModule } from '@angular/core';
@@ -12,7 +13,10 @@ const routes: Routes = [
     path: 'book/:link', component: BookInfoComponent
   },
   {
-    path: 'book/categoria/:id', component: BookCategoriaComponent
+    path: 'book/categoria/:link', component: BookCategoriaComponent
+  },
+  {
+    path: 'book/search/:q', component: BookSearchComponent
   }
 ]
 
