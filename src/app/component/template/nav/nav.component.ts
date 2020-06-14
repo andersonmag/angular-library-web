@@ -1,27 +1,47 @@
 import { Router } from '@angular/router';
 import { Categoria } from './../../../model/Categoria';
 import { BookService } from './../../../service/book.service';
-import { Component, OnInit, Inject} from '@angular/core';
-import { DOCUMENT } from '@angular/common';
-
+import { Component, OnInit, AfterViewChecked } from '@angular/core';
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css']
 })
-export class NavComponent implements OnInit {
+export class NavComponent implements OnInit, AfterViewChecked {
 
   categorias: Categoria[]
+  index: any
 
-  constructor(private bookService: BookService, private router:Router, @Inject(DOCUMENT) document) { }
+  constructor(private bookService: BookService, private router: Router) { }
 
-  ngOnInit(): void {
-    this.bookService.obterTodasAsCategorias().subscribe(categorias => {
-      this.categorias = categorias
+  ngAfterViewChecked(): void {
+    var links = document.getElementsByName("link")
 
-      })
+    this.index ? links[this.index].classList.remove('actual') : ''
+
+    for (let i = 0; i < links.length; i++) {
+
+      var linkLocal = "http://localhost:4200" + links[i].getAttribute("href")
+
+      links[i].classList.remove('actual');
+      if (linkLocal == location.href) {
+        links[i].classList.add('actual');
+        this.index = i
+        break
+      }
+    }
+
 
   }
-  
+
+  ngOnInit(): void {
+
+    this.bookService.obterTodasAsCategorias().subscribe(categorias => {
+      this.categorias = categorias
+    })
+
+  }
+
+
 }
