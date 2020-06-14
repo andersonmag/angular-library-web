@@ -31,6 +31,7 @@
     "bootstrap-material-design": "^4.1.1",
     "express": "^4.17.1",
     "jquery": "^3.3.1",
+    "ngx-pagination": "^5.0.0",
     "path": "^0.12.7",
     "popper.js": "^1.14.3",
     "rxjs": "~6.5.4",
