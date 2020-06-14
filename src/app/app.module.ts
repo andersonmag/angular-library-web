@@ -8,13 +8,15 @@ import { BookInfoComponent } from './component/book-info/book-info.component';
 import { BookListComponent } from './component/book-list/book-list.component'
 import { FooterComponent } from './component/template/footer/footer.component';
 import { HeaderComponent } from './component/template/header/header.component';
+import { NavComponent } from './component/template/nav/nav.component';
 import { AppRoutingRoutingModule } from './app-routing-routing.module';
+import { BookCategoriaComponent } from './component/book-categoria/book-categoria.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { HttpClientModule } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
-import { NavComponent } from './component/template/nav/nav.component';
-import { BookCategoriaComponent } from './component/book-categoria/book-categoria.component';
+import { BookSearchComponent } from './component/book-search/book-search.component';
 registerLocaleData(ptBr)
 
 @NgModule({
@@ -25,13 +27,15 @@ registerLocaleData(ptBr)
     FooterComponent,
     HeaderComponent,
     NavComponent,
-    BookCategoriaComponent 
+    BookCategoriaComponent,
+    BookSearchComponent 
   ],
   imports: [
     BrowserModule,
     AppRoutingRoutingModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    NgxPaginationModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'pt-BR'}
