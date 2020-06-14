@@ -13,29 +13,32 @@ export class BookService {
 
   constructor(private httpClient: HttpClient) { }
   
-  obterTodosOsLivros(): Observable<Book[]> {
-    return this.httpClient.get<Book[]>(this.baseUrl);
+  obterTodosOsLivros(page?): Observable<Book[]> {
+    return this.httpClient.get<Book[]>(this.baseUrl)
+  }
+
+  obterLivrosComPaginacao(page:number): Observable<Book[]> {
+    return this.httpClient.get<Book[]>(this.baseUrl + "?page=" + page)
+  }
+
+  pesquisarLivros(q:string): Observable<Book[]> {
+    return this.httpClient.get<Book[]>(this.baseUrl + "?q=" + q)
   }
 
   obterLivroPorLink(link:string): Observable<Book> {
-    return  this.httpClient.get<Book>(this.baseUrl + "/search/" + link)
+    return this.httpClient.get<Book>(this.baseUrl + "/search/" + link)
   }
 
   obterTodasAsCategorias(): Observable<Categoria[]> {
     return this.httpClient.get<Categoria[]>(this.baseUrl + "/categorias")
   }
 
-  obterLivrosPorCategoria(id:string): Observable<Book[]> {
-    return this.httpClient.get<Book[]>(this.baseUrl + "/categorias/" + id)
+  obterLivrosPorCategoria(link:string): Observable<Book[]> {
+    return this.httpClient.get<Book[]>(this.baseUrl + "/categorias/" + link)
   }
 
   obterLivroPorId(id:string): Observable<Book> {
     return this.httpClient.get<Book>(this.baseUrl + "/" + id)
   }
-
-  obterCategoriaPorLink(link:string): Observable<Categoria> {
-    return this.httpClient.get<Categoria>(this.baseUrl + "/search/categorias/" + link)
-  }
-  
 
 }
