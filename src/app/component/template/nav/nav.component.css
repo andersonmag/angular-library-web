@@ -2,3 +2,13 @@
   background-color: #6c757d!important;
   color: #FFF !important;
 }
+
+.icon {
+  font-size: 2rem;
+  cursor: pointer;
+  color: #6c757d;
+}
+
+.icon:hover {
+  color: darkgreen;
+}

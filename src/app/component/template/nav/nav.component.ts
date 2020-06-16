@@ -12,6 +12,7 @@ export class NavComponent implements OnInit, AfterViewChecked {
 
   categorias: Categoria[]
   index: any
+  icon_name: string = "menu_open"
 
   constructor(private bookService: BookService, private router: Router) { }
 
@@ -22,7 +23,7 @@ export class NavComponent implements OnInit, AfterViewChecked {
 
     for (let i = 0; i < links.length; i++) {
       var linkLocal = links[i].getAttribute("href")
-      
+
       links[i].classList.remove('actual');
       if (linkLocal == location.pathname) {
         links[i].classList.add('actual');
@@ -39,4 +40,16 @@ export class NavComponent implements OnInit, AfterViewChecked {
     })
   }
 
+  changeNav(): void {
+    var sidebar = document.getElementById("wrapper")
+
+    if (sidebar.classList.contains("toggled")) {
+      sidebar.classList.remove("toggled")
+      this.icon_name = "menu_open"
+    }
+    else {
+      sidebar.classList.add("toggled")
+      this.icon_name = "menu"
+    }
+  }
 }

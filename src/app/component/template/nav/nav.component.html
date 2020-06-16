@@ -1,13 +1,17 @@
 <div class="d-flex" id="wrapper">
 
-  <div class="bg-light border-right" id="sidebar-wrapper">
+  <div class="bg-light border-right mt-2" id="sidebar-wrapper">
     <div class="list-group list-group-flush ju">
-      <a class="list-group-item list-group-item-action"  name="link"
-       style="cursor: pointer;" *ngFor="let categoria of categorias" 
-        routerLink="/book/categoria/{{categoria.link}}">{{categoria.nome}}</a>
+      <a class="list-group-item list-group-item-action" name="link" style="cursor: pointer;"
+        *ngFor="let categoria of categorias" routerLink="/book/categoria/{{categoria.link}}">{{categoria.nome}}</a>
     </div>
   </div>
 
+  <span class="pl-3 material-icons icon" (click)="changeNav()"
+        title="Mudar Sidebar">
+    {{icon_name}}
+  </span>
+  
   <router-outlet></router-outlet>
 
 </div>
