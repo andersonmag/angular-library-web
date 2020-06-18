@@ -19,4 +19,17 @@ export class HeaderComponent implements OnInit {
     this.route.navigate(['/book/search/' + event.target.value])
   }
 
+  showDrop(): void  {
+    var drop = document.getElementById("dropdown")
+
+    if(drop.classList.contains("showing")){
+      drop.classList.remove("showing")
+      drop.classList.remove("hiding")
+    }
+    else{
+      drop.classList.add("showing")
+      drop.classList.add("hiding")
+    }
+  }
+
 }

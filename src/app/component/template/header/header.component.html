@@ -1,4 +1,3 @@
-
 <div class="container">
   <div class="row">
 
@@ -29,9 +28,27 @@
       </div>
     </div>
 
+    <div class="col-md-4 d-flex justify-content-center">
+      <button type="button" class="btn btn-danger">
+        Cart: 10
+      </button>
+
+
+      <div class="dropdown show">
+        <span class="material-icons text-muted pl-2 pt-4" (click)="showDrop()" style="vertical-align: middle; font-size: 2.5rem;
+           cursor: pointer;" id="user-icon">
+          account_circle
+        </span>
+
+        <div class="dropdown-menu " aria-labelledby="dropdownMenuLink" id="dropdown">
+          <a class="dropdown-item">Login</a>
+          <a class="dropdown-item" >Criar Conta</a>
+        </div>
+    </div>
 
   </div>
+</div>
 
-  <hr class="mt-2 ">
+<hr class="mt-2 ">
 
 </div>

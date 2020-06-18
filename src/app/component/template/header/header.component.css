@@ -36,3 +36,21 @@
 .icon:hover {
     color: darkcyan;
 }
+
+.cart-qtt {
+    width: 30px;
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 8px;
+    border-radius: 20px;
+}
+
+
+#user-icon:hover {
+    color: darkcyan !important;
+}
+
+.icons .cart-qtt {
+    text-align: center;
+    color: #FFF;
+}
