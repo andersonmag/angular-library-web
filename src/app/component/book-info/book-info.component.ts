@@ -16,9 +16,10 @@ export class BookInfoComponent implements OnInit {
   sliceLength: number = 1000
   loading: boolean = true
   books: Book[]
+  quantity: number = 1
 
   constructor(private bookService: BookService,
-    private activatedRoute: ActivatedRoute, private router:Router) { }
+    private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -40,13 +41,35 @@ export class BookInfoComponent implements OnInit {
         this.router.navigate(['/'])
       })
     })
-
+    this.decrement()
   }
 
   changeSlice(): void {
     this.sliceLength == 1000 ?
       this.sliceLength = this.book.descricao.length :
       this.sliceLength = 1000
+  }
+
+  increment() {
+    var quantity = document.getElementById("quantity");
+    var dc = document.getElementById("decrement").style
+    this.quantity < 10 ? this.quantity++ : ''
+
+    if (this.quantity > 1) {
+      dc.pointerEvents = 'all'
+      dc.opacity = "inherit"
+    }
+  }
+
+  decrement() {
+    var quantity = document.getElementById("quantity");
+    var dc = document.getElementById("decrement").style
+    this.quantity > 1 ? this.quantity-- : ''
+
+    if (this.quantity == 1) {
+      dc.pointerEvents = 'none'
+      dc.opacity = "0.5"
+    }
   }
 
 }

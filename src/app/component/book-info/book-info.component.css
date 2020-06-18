@@ -19,10 +19,14 @@ text-decoration: none;
     height: 100px;
 }
 
+.jumbotron {
+    padding: 1rem 2rem;
+}
+
 .table {
+    width: 80%;
     margin-top: 5%;
     margin-bottom: 4%;
-    width: 90%;
     border-bottom: solid #008b8b71 1px;
     border-top: solid #008b8b67 1px;
 }
@@ -33,4 +37,57 @@ text-decoration: none;
     text-align: center;
     text-shadow: black;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.btn {
+    text-transform: none;
+}
+
+.breadcrumb {
+    padding: .25rem 1rem;
+}
+
+.preco {
+    margin: 10px;
+    flex-direction: column;
+}
+
+.counter {
+    width: 50%;
+    border-radius: 2px;
+    border: darkcyan 1px solid;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+#quantity {
+    font-weight: 100;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    vertical-align: middle;
+    margin-top: 5px;
+}
+
+.counter .icon {
+    vertical-align: middle;
+    text-align: center;
+    width: 30%;
+    line-height: 1.6 !important;
+
+}
+
+.counter .icon:hover {
+    background-color: #009688 !important;
+    color: #fff !important;
+    cursor: pointer;
+}
+
+.counter span:nth-child(1) {
+    border-right: #008b8b8f solid 1px;
+    border-top: #CCC;;
+    float: left;
+}
+
+.counter span:nth-child(3) {
+    border-left: #008b8b8f solid 1px;
+    float: right;
 }
