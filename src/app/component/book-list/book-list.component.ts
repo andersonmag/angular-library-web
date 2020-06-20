@@ -21,6 +21,7 @@ export class BookListComponent implements OnInit {
     nextLabel: '',
     totalItems: 0
   }
+  value:any
 
   constructor(private bookService: BookService, private routerActive: ActivatedRoute) { }
 
@@ -56,6 +57,10 @@ export class BookListComponent implements OnInit {
       this.result = "Nenhum resultado encontrado para " 
       this.q = event.target.value
     })
+  }
+
+  conta(valor) {
+    this.value = valor.toFixed(1)
   }
 
 }
