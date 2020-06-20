@@ -48,10 +48,10 @@
             <hr>
 
             <h2 class="text-primary text-justify" style="font-family: 'Franklin Gothic Medium',
-                'Arial Narrow', Arial, sans-serif;">{{260 | currency:'BRL':true}}</h2>
+                'Arial Narrow', Arial, sans-serif;">{{book.preco | currency:'BRL':true}}</h2>
             <span class="text-muted">
               <del>
-                {{300 | currency:'BRL':true}}
+                {{book.precoAnterior | currency:'BRL':true}}
               </del>
             </span>
             <br>
@@ -78,7 +78,7 @@
               </select>
             </div>
 
-            <button disabled type="button" class="btn btn-raised btn-sm btn-danger" style="font-size: 1rem;">
+            <button type="button" class="btn btn-raised btn-sm btn-danger" style="font-size: 1rem;" (click)="addItemCart(book)">
               Adicionar ao Carrinho
               <span class="material-icons" style="vertical-align: middle;">
                 add_shopping_cart

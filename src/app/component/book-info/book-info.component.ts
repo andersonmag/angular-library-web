@@ -1,3 +1,5 @@
+import { CartService } from './../../service/cart.service';
+import { Item } from './../../model/item';
 import { Categoria } from './../../model/Categoria';
 import { Book } from 'src/app/model/book';
 import { BookService } from './../../service/book.service';
@@ -17,8 +19,10 @@ export class BookInfoComponent implements OnInit {
   loading: boolean = true
   books: Book[]
   quantity: number = 1
+  item: Item
 
-  constructor(private bookService: BookService,
+
+  constructor(private bookService: BookService, private cartService: CartService,
     private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
@@ -70,6 +74,13 @@ export class BookInfoComponent implements OnInit {
       dc.pointerEvents = 'none'
       dc.opacity = "0.5"
     }
+  }
+
+  addItemCart(book: Book) {
+    this.item = new Item(book)
+    this.item.quantidade = this.quantity
+
+    this.cartService.adicionarCarrinho(this.item)
   }
 
 }
