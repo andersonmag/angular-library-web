@@ -37,20 +37,29 @@
     color: darkcyan;
 }
 
-.cart-qtt {
-    width: 30px;
-    position: absolute;
-    margin-top: 10px;
-    margin-left: 8px;
-    border-radius: 20px;
-}
-
-
 #user-icon:hover {
     color: darkcyan !important;
 }
 
-.icons .cart-qtt {
-    text-align: center;
-    color: #FFF;
+.cart {
+    margin-top: 10px;
+    height: 40px;
+    padding: 4px;
+    margin-top: 10px;
+    font-size: 1.8rem !important;
+    vertical-align: middle;
+    color: black;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.cart:hover {
+    cursor: pointer;
+    background-color: darkcyan;
+}
+
+.cart .size {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 300;
+    font-size: 1.5rem;
 }

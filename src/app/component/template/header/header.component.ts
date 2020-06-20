@@ -1,3 +1,4 @@
+import { CartService } from './../../../service/cart.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,27 +10,32 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   q: string = 'soft'
+  cartSize = 0
 
-  constructor(private route: Router) { }
+  constructor(private route: Router, private cartService: CartService) { }
 
   ngOnInit(): void {
+
+    this.cartService.totalQtdd.subscribe(qtdd => {
+      this.cartSize = qtdd
+    }
+    )
   }
 
-  teste(event): void {
+  buscar(event): void {
     this.route.navigate(['/book/search/' + event.target.value])
   }
 
-  showDrop(): void  {
+  showDrop(): void {
     var drop = document.getElementById("dropdown")
-
-    if(drop.classList.contains("showing")){
-      drop.classList.remove("showing")
-      drop.classList.remove("hiding")
-    }
-    else{
       drop.classList.add("showing")
       drop.classList.add("hiding")
-    }
+  }
+
+  removeDrop() {
+    var drop = document.getElementById("dropdown")
+    drop.classList.remove("showing")
+    drop.classList.remove("hiding")
   }
 
 }

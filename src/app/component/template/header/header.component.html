@@ -23,19 +23,25 @@
         </button>
         <span id="collapse-search" class="collapse show">
           <input class="form-control" type="text" id="search" placeholder="Busque por livros..."
-            style="font-size: 1.4rem;" (keyup)="teste($event)">
+            style="font-size: 1.4rem;" (keyup)="buscar($event)">
         </span>
       </div>
     </div>
 
-    <div class="col-md-4 d-flex justify-content-center">
-      <button type="button" class="btn btn-danger">
-        Cart: 10
-      </button>
-
+    <div class="col-md-4 d-flex justify-content-center mt-3">
+     
+      <div class="cart d-flex">
+        <span class="material-icons" style="font-size: 2rem;">
+          shopping_cart
+          </span>
+          
+          <div class="size d-flex">
+            {{cartSize}}
+          </div>
+      </div>
 
       <div class="dropdown show">
-        <span class="material-icons text-muted pl-2 pt-4" (click)="showDrop()" style="vertical-align: middle; font-size: 2.5rem;
+        <span class="material-icons text-muted pl-2 pt-2" style="vertical-align: middle; font-size: 2.5rem;
            cursor: pointer;" id="user-icon">
           account_circle
         </span>
@@ -45,7 +51,6 @@
           <a class="dropdown-item" >Criar Conta</a>
         </div>
     </div>
-
   </div>
 </div>
 
