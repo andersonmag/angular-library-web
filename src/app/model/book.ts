@@ -1,10 +1,13 @@
 import { Categoria } from './Categoria';
+
 export class Book {
     
     id: number
     titulo: string
     autor: string
     editora: string
+    preco: string
+    precoAnterior: string
     descricao: string
     idioma: string
     link: string
@@ -12,5 +15,4 @@ export class Book {
     dataPublicacao: string
     dataCriacao:string
     categoria: Categoria
-
 }
