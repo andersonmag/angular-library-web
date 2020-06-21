@@ -53,9 +53,19 @@
     margin-right: 10px;
 }
 
+.table-inverse thead th, thead.thead-inverse th {
+    color: darkcyan;
+}
+
+.dropdown-menu {
+    right: 100%;
+    width: 350px;
+    max-width: 400px;
+}
+
 .cart:hover {
     cursor: pointer;
-    background-color: darkcyan;
+    background-color: rgba(0, 139, 139, 0.158);
 }
 
 .cart .size {

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" >
   <div class="row">
 
     <div class="col-lg-4 col-md-5 col-sm-12 justify-content-center" style="display: flex;">
@@ -29,31 +29,101 @@
     </div>
 
     <div class="col-md-4 d-flex justify-content-center mt-3">
-     
-      <div class="cart d-flex">
-        <span class="material-icons" style="font-size: 2rem;">
-          shopping_cart
-          </span>
-          
-          <div class="size d-flex">
-            {{cartSize}}
-          </div>
-      </div>
 
-      <div class="dropdown show">
-        <span class="material-icons text-muted pl-2 pt-2" style="vertical-align: middle; font-size: 2.5rem;
-           cursor: pointer;" id="user-icon">
-          account_circle
+       <div class="dropdown-menu" id="dropdown">
+
+          <div class="row d-flex justify-content-center" *ngIf="itens">
+            <table class="table table-inverse table-responsive d-flex justify-content-center"
+              style=" padding-left: 7px; padding-top: 0; margin: 0;">
+              <tbody>
+                <tr *ngFor="let item of itens">
+                  <a [routerLink]="[ '/book', item.book.link ]">
+                    <td scope="row">
+                      <img src="{{item.imagemUrl}}" width="80" alt="">
+                    </td>
+                  </a>
+                  <td style="padding-top: 10px;">
+                    <a [routerLink]="[ '/book', item.book.link ]">
+
+                      <span
+                        style="color: black; font-size: 0.8rem; vertical-align: middle; display: flex; justify-content: center; width: 95%;">
+                        {{item.nome}}
+                      </span>
+                    </a>
+                    <span style="color: black; font-size: 0.8rem; vertical-align: middle; display: flex;">
+                      <span class="text-muted">
+                      </span>
+                      <strong>
+                         Quantidade: {{item.quantidade}}
+                      </strong>
+                    </span>
+                    <span style="color: black; font-size: 0.8rem; ">
+                      <span class="text-danger">
+                        <strong>
+                          {{item.preco | currency:'BRL':true}}
+                        </strong>
+                      </span>
+                    </span>
+                  </td>
+                  <hr>
+                </tr>
+                <hr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="row d-flex justify-content-center" *ngIf="itens">
+
+            <div class="col-md-6 d-flex justify-content-center" style="border-right: 1px darkcyan solid;">
+              <button type="button" class="btn btn-success active float-left">View Cart
+                <span class="material-icons text-light" style="font-size: 1.5rem; vertical-align: middle; margin-bottom: 4px;">
+                  shopping_cart
+                </span>
+              </button>
+            </div>
+
+            <div class="col-md-6 d-flex justify-content-center" style="font-size: 0.9rem ;flex-direction: column; align-items: center;">
+              <span class="text-success">
+                Livros:
+                <strong>
+                  {{cartSize}}
+                </strong>
+              </span>
+
+              <span class="text-success">
+                Total:
+                <strong>
+                  {{cartPrecoTotal | currency:'BRL':true}}
+                </strong>
+              </span>
+            </div>
+          </div>
+
+          <div class="row d-flex justify-content-center" *ngIf="!itens">
+            <span style="padding: 10px; ">
+              <span class="material-icons text-warning" style="vertical-align: middle; font-size: 2rem;">
+                error
+              </span>
+              Carrinho vazio :(
+            </span>
+          </div>
+        </div>
+
+      <div class="cart d-flex">
+        <span class="material-icons text-info" style="font-size: 2rem; vertical-align: middle;" (click)="showDrop()" (mouseenter)="showDrop()">
+          shopping_cart
         </span>
 
-        <div class="dropdown-menu " aria-labelledby="dropdownMenuLink" id="dropdown">
-          <a class="dropdown-item">Login</a>
-          <a class="dropdown-item" >Criar Conta</a>
+        <div class="size d-flex text-success">
+
+          {{cartSize}}
         </div>
+      </div>
+
+
     </div>
   </div>
-</div>
 
-<hr class="mt-2 ">
+  <hr class="mt-2 ">
 
 </div>
