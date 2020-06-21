@@ -1,6 +1,5 @@
-import { Book } from 'src/app/model/book';
 import { Item } from './../model/item';
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
 @Injectable({
@@ -8,17 +7,41 @@ import { Subject } from 'rxjs';
 })
 export class CartService {
 
-  itens:Item[] = []
+  itens: Item[] = []
   totalQtdd: Subject<number> = new Subject<number>()
   totalPreco: Subject<number> = new Subject<number>()
 
   constructor() { }
 
-  adicionarCarrinho(item:Item): void {
-    this.itens.push(item)
+  adicionarCarrinho(item: Item): void {
 
-    this.totalQtdd.next(this.itens.length)
+    if (!this.verificarExistenciaLivro(item)) {
+      this.itens.push(item)
+    }
+    this.calcularPreco()
   }
 
+  verificarExistenciaLivro(item: Item) {
 
+    for (let i = 0; i < this.itens.length; i++) {
+      if (this.itens[i].id == item.id) {
+        this.itens[i].quantidade += item.quantidade
+        return true
+      }
+    }
+  }
+
+  calcularPreco() {
+
+    let total: number = 0
+    let totalQtdd: number = 0
+    
+    for (let item of this.itens) {
+      total += item.quantidade * item.preco
+      totalQtdd += item.quantidade
+    }
+
+    this.totalQtdd.next(totalQtdd)
+    this.totalPreco.next(total)
+  }
 }
