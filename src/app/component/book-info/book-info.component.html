@@ -78,7 +78,8 @@
               </select>
             </div>
 
-            <button type="button" class="btn btn-raised btn-sm btn-danger" style="font-size: 1rem;" (click)="addItemCart(book)">
+            <button type="button" class="btn btn-raised btn-sm btn-danger" style="font-size: 1rem;"
+              (click)="addItemCart(book)">
               Adicionar ao Carrinho
               <span class="material-icons" style="vertical-align: middle;">
                 add_shopping_cart
@@ -159,6 +160,12 @@
               </p>
             </span>
           </a>
+          <strong>
+            <p class="mt-2">
+              <span class="text-success"
+                style="font-size: 0.8rem; font-weight: 600;">{{bookIt.preco | currency:'BRL':true}}</span>
+            </p>
+          </strong>
         </div>
       </div>
     </div>
