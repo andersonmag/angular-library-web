@@ -6,8 +6,8 @@ export class Book {
     titulo: string
     autor: string
     editora: string
-    preco: string
-    precoAnterior: string
+    preco: number
+    precoAnterior: number
     descricao: string
     idioma: string
     link: string
