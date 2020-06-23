@@ -1,0 +1,209 @@
+<div class="container ">
+
+    <nav aria-label="breadcrumb w-5">
+        <ol class="breadcrumb" style="background-color: #fafafa; vertical-align: middle;">
+            <li class="breadcrumb-item"><a routerLink="/">
+                    <span class="material-icons">
+                        home
+                    </span> </a></li>
+            <li class="breadcrumb-item active" aria-current="page">Cart View</li>
+        </ol>
+    </nav>
+
+    <div class="py-2 text-center text-justify" *ngIf="itens.length > 0">
+        <div class="jumbotron">
+
+            <p class="lead text-muted">Por favor, confirme seu endereço de e-mail para que dessa forma possa estar
+                recebendo informações,
+                novidades e seus produtos sem sair de casa. Agradecemos a compreenção!</p>
+        </div>
+    </div>
+
+    <div class="row" style="flex-direction: column;" *ngIf="itens.length == 0">
+
+        <span class="material-icons text-info text-center" style="font-size: 12rem;" title="Apagar tudo">
+            remove_shopping_cart
+        </span>
+
+        <h4 class="text-dark text-center p-3" style="font-family: Verdana, Geneva, Tahoma, sans-serif;">
+            Você ainda não possui itens em seu carrinho!!
+        </h4>
+
+    </div>
+
+
+    <div class="row " style="vertical-align: middle;" *ngIf="itens.length > 0">
+        <div class="col-6 ">
+            <h6 class="text-muted float-left"
+                style="font-family: Verdana, Geneva, Tahoma, sans-serif; vertical-align: middle;">
+                <span class="material-icons text-info" style="font-size: 1.8rem;vertical-align: middle;">
+                    shopping_cart
+                </span>
+                Meu Carrinho
+            </h6>
+        </div>
+        <div class="col-4">
+            <span class="material-icons float-right delete-all" data-toggle="modal" data-target="#exampleModalCenter"
+                title="Apagar tudo">
+                delete_forever
+            </span>
+        </div>
+    </div>
+
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" *ngIf="itens.length > 0"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title text-danger" id="exampleModalLongTitle">
+                        <span class="material-icons text-warning" style="vertical-align: middle; font-size: 2rem;">
+                            error
+                        </span>
+                        Você está prestes a deletar TUDO do seu Carrinho de Compras! Após, isso não será desfeito.
+                    </h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <span class="text-secondary">
+                        Tem certeza disso?
+                    </span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light bg-secondary mr-2" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-light bg-danger" (click)="esvaziarCart()"
+                        data-dismiss="modal">Deletar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="itens.length > 0">
+        <div class="col-md-10 order-md-1">
+            <hr>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Livro</th>
+                        <th>Preço</th>
+                        <th class="text-center">Quantidade</th>
+                        <th class="text-center">Subtotal</th>
+                        <th>Excluir</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of itens">
+                        <td class="col-sm-8 col-md-6">
+                            <div class="media">
+                                <a class="thumbnail pull-left" [routerLink]="[ '/book', item.book.link ]">
+                                    <img class="media-object" src="{{item?.imagemUrl}}"
+                                        style="width: 65px; height: 65px;">
+                                </a>
+                                <div class="media-body pl-2">
+                                    <a class="thumbnail pull-left" style="text-decoration: none;"
+                                        [routerLink]="[ '/book', item.book.link ]">
+                                        <h6 class="media-heading">
+                                            <span class="text-black">
+                                                {{item?.nome}}
+                                            </span>
+                                        </h6>
+                                    </a>
+                                    <h6 class="media-heading text-muted" style="font-size: 0.8rem;"> by
+                                        <strong>
+                                            {{item?.book.autor}}
+                                        </strong>
+                                    </h6>
+
+                                    <span class=" text-muted" style="font-size: 0.8rem;">Tipo de Mídia:
+                                        <strong class="text-muted">
+                                            {{item.midia}}
+                                        </strong>
+                                    </span>
+
+                                </div>
+                            </div>
+                        </td>
+
+                        <td class="col-sm-1 col-md-1 text-center " style="vertical-align: middle;font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+                             'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
+                            {{item?.preco | currency:'BRL':true}}
+                            <span class="text-muted" style="font-size: 0.8rem;">
+                                <del>
+                                    {{item?.book.precoAnterior | currency:'BRL':true}}
+                                </del>
+                            </span>
+                        </td>
+                        <td class="col-sm-1 col-md-1" style="text-align: center" style="vertical-align: middle">
+                            <input type="number" min="0" max="10" class="form-control" id="qtdd"
+                                (keyup)="alterarQuantidade(item ,$event)" (click)="alterarQuantidade(item, $event)"
+                                value="{{item.quantidade}}">
+                        </td>
+                        <td class="col-sm-1 col-md-1 text-center"
+                            style="vertical-align: middle;font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
+                            {{item.preco * item.quantidade | currency:'BRL':true}}</td>
+                        <td class="col-sm-1 col-md-1" style="vertical-align: middle">
+                            <button type="button" class="btn btn-danger" (click)="deletar(item)">
+                                <span class="material-icons" style="font-size: 2rem;">
+                                    delete
+                                </span>
+                            </button></td>
+                    </tr>
+
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>
+                            <h5>Subtotal</h5>
+                        </td>
+                        <td class="text-right">
+                            <h5>
+                                {{cartPrecoTotal | currency:'BRL':true}}
+                            </h5>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>
+                            <h3>Total</h3>
+                        </td>
+                        <td class="text-right text-info">
+                            <h3>{{cartPrecoTotal | currency:'BRL':true}}</h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>
+                            <a routerLink="/">
+                                <button type="button" class="btn btn-light bg-success" style="text-transform: none">
+
+                                    <span class="material-icons" style="vertical-align: middle;">
+                                        first_page
+                                    </span>
+                                    <span class="glyphicon glyphicon-shopping-cart" style="vertical-align: middle;">
+                                        Continue Comprando
+                                    </span>
+                                </button>
+                            </a>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-light bg-danger" style="text-transform: none">
+
+                                <span class="glyphicon glyphicon-shopping-cart pl-1" style="vertical-align: middle;">
+                                    Finalizar
+                                </span>
+                                <span class="material-icons" style="vertical-align: middle;">
+                                    check_circle
+                                </span>
+                            </button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
