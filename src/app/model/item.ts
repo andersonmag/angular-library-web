@@ -1,3 +1,4 @@
+import { Midia } from './midia';
 import { Book } from 'src/app/model/book';
 
 export class Item {
@@ -8,6 +9,7 @@ export class Item {
     quantidade: number
     book: Book
     preco: number
+    midia: Midia
 
     constructor(book:Book){
         this.id = book.id
