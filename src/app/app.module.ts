@@ -13,10 +13,12 @@ import { AppRoutingRoutingModule } from './app-routing-routing.module';
 import { BookCategoriaComponent } from './component/book-categoria/book-categoria.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
 import { BookSearchComponent } from './component/book-search/book-search.component';
+import { CartViewComponent } from './component/cart-view/cart-view.component';
 registerLocaleData(ptBr)
 
 @NgModule({
@@ -28,14 +30,16 @@ registerLocaleData(ptBr)
     HeaderComponent,
     NavComponent,
     BookCategoriaComponent,
-    BookSearchComponent 
+    BookSearchComponent,
+    CartViewComponent 
   ],
   imports: [
     BrowserModule,
     AppRoutingRoutingModule,
     HttpClientModule,
     RouterModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    FormsModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'pt-BR'}
