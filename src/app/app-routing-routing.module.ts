@@ -4,6 +4,7 @@ import { BookListComponent } from './component/book-list/book-list.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BookInfoComponent } from './component/book-info/book-info.component';
+import { CartViewComponent } from './component/cart-view/cart-view.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,9 @@ const routes: Routes = [
   },
   {
     path: 'book/search/:q', component: BookSearchComponent
+  },
+  {
+    path: 'cart-detalhes', component: CartViewComponent
   }
 ]
 
