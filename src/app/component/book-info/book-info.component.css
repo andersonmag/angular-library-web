@@ -52,6 +52,10 @@ text-decoration: none;
     flex-direction: column;
 }
 
+.list-group-item :first-child {
+    margin-right: 0;
+}
+
 .counter {
     width: 50%;
     border-radius: 2px;

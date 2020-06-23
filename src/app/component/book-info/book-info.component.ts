@@ -1,3 +1,4 @@
+import { Midia } from './../../model/midia';
 import { CartService } from './../../service/cart.service';
 import { Item } from './../../model/item';
 import { Categoria } from './../../model/Categoria';
@@ -20,12 +21,16 @@ export class BookInfoComponent implements OnInit {
   books: Book[]
   quantity: number = 1
   item: Item
-
+  midias = Midia
+  midiaSelecionada: Midia 
+  cartQtdd: number = 0
+  totalPreco: number = 0
 
   constructor(private bookService: BookService, private cartService: CartService,
     private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
+    this.midiaSelecionada = Midia.DIGITAL
     this.activatedRoute.params.subscribe(params => {
       const link = params["link"]
 
@@ -38,7 +43,6 @@ export class BookInfoComponent implements OnInit {
             if (this.books[i].id == this.book.id)
               index = i
           }
-          console.log(index)
           this.books.splice(index, 1)
         })
       }, (err) => {
@@ -46,6 +50,15 @@ export class BookInfoComponent implements OnInit {
       })
     })
     this.decrement()
+    this.detalhesCart()
+  }
+
+  detalhesCart() {
+    this.cartService.totalPreco.subscribe(
+      total => this.totalPreco = total)
+      this.cartService.totalQtdd.subscribe(
+        qtdd => this.cartQtdd = qtdd
+      )
   }
 
   changeSlice(): void {
@@ -79,6 +92,7 @@ export class BookInfoComponent implements OnInit {
   addItemCart(book: Book) {
     this.item = new Item(book)
     this.item.quantidade = this.quantity
+    this.item.midia = this.midiaSelecionada
 
     this.cartService.adicionarCarrinho(this.item)
   }

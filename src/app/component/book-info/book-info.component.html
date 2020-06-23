@@ -72,14 +72,13 @@
 
             <div class="form-group mt-3">
               <label for="exampleSelect2" class="bmd-label-floating">Tipo de Mídia</label>
-              <select class="form-control" id="exampleSelect2">
-                <option value="1">Digital</option>
-                <option value="2">Física</option>
+              <select class="form-control" id="exampleSelect2" [(ngModel)]="midiaSelecionada">
+                <option *ngFor="let midia of midias | keyvalue" [value]="midia.value">{{midia.value}}</option>
               </select>
             </div>
 
             <button type="button" class="btn btn-raised btn-sm btn-danger" style="font-size: 1rem;"
-              (click)="addItemCart(book)">
+              (click)="addItemCart(book)" data-toggle="modal" data-target="#exampleModalCenter">
               Adicionar ao Carrinho
               <span class="material-icons" style="vertical-align: middle;">
                 add_shopping_cart
@@ -91,6 +90,63 @@
     </div>
   </div>
 
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <span class="material-icons text-success" style="font-size: 10rem;">
+            check_circle
+          </span>
+
+          <h6 class="modal-title text-center text-justify" id="exampleModalLongTitle">
+            <strong class="text-success">
+              + {{quantity}} Novo(s) Livro(s)
+            </strong>
+            Adicionado(s) ao Seu Carrinho</h6>
+
+          <ul class="list-group">
+            <li class="list-group-item active" style="font-size: 1.2rem;">
+              Livro
+              <span class=" ml-2 badge badge-secondary badge-pill" style="font-size: 1rem;">
+                {{book.titulo | slice:0:40}}
+                <span *ngIf="book.titulo.length > 40">...</span>
+              </span>
+
+            </li>
+            <li class="list-group-item"
+              style="font-size: 1rem; align-items: center; display: flex; justify-content: center;">
+              <span class="material-icons text-success pr-2" style="font-size: 2rem; vertical-align: middle;">
+                shopping_cart
+              </span>
+
+              <span class="badge badge-secondary badge-pill mr-2" style="font-size: 1rem;">{{cartQtdd}}</span>
+              Livro(s)
+              | Total:
+              <span class="badge badge-secondary badge-pill ml-2" style="font-size: 1rem;">
+                {{totalPreco | currency:'BRL':true}}
+              </span>
+            </li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light bg-secondary mr-2" data-dismiss="modal">Continuar
+            Comprando</button>
+          <a routerLink="/cart-detalhes">
+            <button type="button" class="btn btn-light bg-info" data-dismiss="modal" >
+              <span style="vertical-align: middle;">
+                Ver meu Carrinho
+              </span>
+              <span class="material-icons text-light" style="font-size: 1.5rem; vertical-align: middle;">
+                shopping_cart
+              </span>
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
   <div class="row d-flex justify-content-center mt-3">
