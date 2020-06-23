@@ -27,7 +27,6 @@ export class HeaderComponent implements OnInit {
       this.cartService.totalPreco.subscribe(total => {
         this.cartPrecoTotal = total
       })
-     
     }
     )
   }
@@ -36,20 +35,19 @@ export class HeaderComponent implements OnInit {
     this.route.navigate(['/book/search/' + event.target.value])
   }
 
-  
+  removeDrop() {
+    var drop = document.getElementById("dropdown")
+
+    drop.classList.remove("showing")
+    drop.classList.remove("hiding")
+  }
+
 
   showDrop() {
     var drop = document.getElementById("dropdown")
-      
-      if(!drop.classList.contains("showing")){
-        drop.classList.add("showing")
-        drop.classList.add("hiding")
-      }
 
-    else {
-      drop.classList.remove("showing")
-      drop.classList.remove("hiding")
-    }
+    drop.classList.add("showing")
+    drop.classList.add("hiding")
   }
 
 }
