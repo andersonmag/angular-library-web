@@ -7,16 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  date: any
+  date: number
   icones = [{
     class: '',
     link: ''
-  }
-  ]
+  }]
 
   constructor() { }
 
   ngOnInit(): void {
+    this.inserirInformacoes()
+  }
+
+  inserirInformacoes() {
     this.date = new Date().getFullYear()
     this.icones = [{
       class: "devicon-github-plain colored icone",

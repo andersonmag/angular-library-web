@@ -12,8 +12,6 @@ export class BookListComponent implements OnInit {
 
   books: Book[]
   loading: boolean = true
-  q: string = ''
-  result: string
   config = {
     itemsPerPage: 0,
     currentPage: 0,
@@ -21,11 +19,14 @@ export class BookListComponent implements OnInit {
     nextLabel: '',
     totalItems: 0
   }
-  value:any
 
   constructor(private bookService: BookService, private routerActive: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.adquirirLivros()
+  }
+
+  adquirirLivros() {
     this.bookService.obterTodosOsLivros().subscribe(books => {
       this.books = books['content']
       this.config.totalItems = books['total_size']
@@ -37,30 +38,11 @@ export class BookListComponent implements OnInit {
     this.loading = false;
   }
 
-  onPageChange(event) {
+  alterarPaginacao(event) {
     this.config.currentPage = event;
-    this.bookService.obterLivrosComPaginacao(this.config.currentPage - 1).subscribe(books => {
-      this.books = books['content']
-    })
-  }
-
-  teste(event): void {
-    this.bookService.pesquisarLivros(event.target.value).subscribe(books => {
-      this.q = ""
-      this.result = ""
-      this.books = books['content']
-      this.config.totalItems = books['total_size']
-      this.config.itemsPerPage = books['size']
-    }, (err) => {
-      this.books = []
-      this.config.totalItems = 0
-      this.result = "Nenhum resultado encontrado para " 
-      this.q = event.target.value
-    })
-  }
-
-  conta(valor) {
-    this.value = valor.toFixed(1)
+    this.bookService.obterLivrosComPaginacao(this.config.currentPage - 1).subscribe(
+      books => this.books = books['content']
+    )
   }
 
 }

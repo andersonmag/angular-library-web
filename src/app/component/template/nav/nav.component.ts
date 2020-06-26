@@ -16,7 +16,15 @@ export class NavComponent implements OnInit, AfterViewChecked {
 
   constructor(private bookService: BookService, private router: Router) { }
 
+  ngOnInit(): void {
+    this.obterCategorias()
+  }
+
   ngAfterViewChecked(): void {
+    this.buscarCategoriaSelecionada()
+  }
+
+  buscarCategoriaSelecionada() {
     var links = document.getElementsByName("link")
 
     this.index ? links[this.index].classList.remove('actual') : ''
@@ -33,14 +41,13 @@ export class NavComponent implements OnInit, AfterViewChecked {
     }
   }
 
-  ngOnInit(): void {
-
+  obterCategorias() {
     this.bookService.obterTodasAsCategorias().subscribe(categorias => {
       this.categorias = categorias
     })
   }
 
-  changeNav(): void {
+  alterarNav(): void {
     var sidebar = document.getElementById("wrapper")
 
     if (sidebar.classList.contains("toggled")) {

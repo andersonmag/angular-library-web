@@ -3,7 +3,6 @@ import { Book } from 'src/app/model/book';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from './../../service/book.service';
 import { Component, OnInit } from '@angular/core';
-import { parse } from 'path';
 
 @Component({
   selector: 'app-book-categoria',
@@ -17,18 +16,20 @@ export class BookCategoriaComponent implements OnInit {
   loading: boolean = true
 
   constructor(private bookService: BookService,
-    private router: Router, private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.adquirirLivros()
+  }
 
+  adquirirLivros() {
     this.activatedRoute.params.subscribe(params => {
-      const link = params['link'];
-        this.bookService.obterLivrosPorCategoria(link) .subscribe(books => {
-          this.books = books['content']
-          this.categoria = this.books[0].categoria
-        })
+      const link = params.link
+      this.bookService.obterLivrosPorCategoria(link).subscribe(books => {
+        this.books = books['content']
+        this.categoria = books['content'][0]['categoria']
+      })
     });
-
   }
 
 }

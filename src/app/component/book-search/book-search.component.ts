@@ -17,8 +17,8 @@ export class BookSearchComponent implements OnInit {
   config = {
     itemsPerPage: 0,
     currentPage: 0,
-    previousLabel: '',
-    nextLabel: '',
+    previousLabel: 'Anterior',
+    nextLabel: 'Próximo',
     totalItems: 0
   }
 
@@ -26,7 +26,10 @@ export class BookSearchComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
+    this.buscarLivros()
+  }
 
+  buscarLivros() {
     this.activatedRoute.params.subscribe(params => {
       this.q = params.q
       this.bookService.pesquisarLivros(this.q).subscribe(books => {
@@ -34,7 +37,7 @@ export class BookSearchComponent implements OnInit {
         this.result = "Resultados para "
         this.config.totalItems = books['total_size']
         this.config.itemsPerPage = books['size']
-      }, (err) => {
+      }, () => {
         this.books = []
         this.config.totalItems = 0
         this.result = "Nenhum resultado encontrado para "
@@ -46,9 +49,7 @@ export class BookSearchComponent implements OnInit {
     this.loading = false;
   }
 
-
-  onPageChange(event) {
-
+  alterarPaginacao(event) {
     this.config.currentPage = event;
     this.bookService.obterLivrosComPaginacao(this.config.currentPage - 1).subscribe(books => {
       this.books = books['content']

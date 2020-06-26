@@ -1,6 +1,6 @@
 import { Item } from './../../model/item';
 import { CartService } from './../../service/cart.service';
-import { Component, OnInit, AfterViewChecked } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,46 +10,37 @@ import { Router } from '@angular/router';
 })
 export class CartViewComponent implements OnInit {
 
-  q: string = 'soft'
-  cartSize = 0
-  itens: Item[] 
-  cartPrecoTotal = 0
-  itemPrecoUnit = 0
+  quantidade = 0
+  itens: Item[]
+  precoTotal = 0
 
   constructor(private route: Router, private cartService: CartService) { }
 
   ngOnInit() {
-    this.cartDetails();
+    this.carrinhoDetalhes();
   }
 
-  cartDetails() {
+  carrinhoDetalhes() {
 
-    this.cartService.totalPreco.subscribe(
-      data => {
-        this.cartPrecoTotal = data
-        this.itens = this.cartService.itens
-      }
-    );
-
-    this.cartService.totalQtdd.subscribe(
-      data => this.cartSize = data
-    );
+    this.cartService.totalPreco.subscribe(total => {
+      this.precoTotal = total
+      this.itens = this.cartService.itens
+    })
 
     this.cartService.calcularPreco();
   }
 
-  alterarQuantidade(item:Item, event) {
-    let qtdd = event.target.value
-    
-    this.cartService.alterarQtdd(item, qtdd)
+  alterarQuantidade(item: Item, event) {
+    let itemQuantidade = event.target.value
+
+    this.cartService.alterarQtdd(item, itemQuantidade)
   }
 
   deletar(item: Item) {
     this.cartService.remover(item)
   }
 
-  esvaziarCart() {
+  esvaziarCarrinho() {
     this.cartService.deletarTudo()
   }
-
 }

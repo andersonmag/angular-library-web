@@ -11,12 +11,13 @@ export class Item {
     preco: number
     midia: Midia
 
-    constructor(book:Book){
+    constructor(book: Book, qtdd: number, midia: Midia) {
         this.id = book.id
         this.imagemUrl = book.imagemURL
         this.nome = book.titulo
         this.preco = book.preco
         this.book = book
+        this.quantidade = qtdd
+        this.midia = midia
     }
-
 }

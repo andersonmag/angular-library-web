@@ -59,8 +59,8 @@
             </ul>
         </nav>
         -->
-        <pagination-controls *ngIf="books.length > 0" (pageChange)="onPageChange($event)"
-                             previousLabel="Anterior" nextLabel="Próximo" responsive=true>
+        <pagination-controls *ngIf="books.length > 0" (pageChange)="alterarPaginacao($event)"
+                             previousLabel="" nextLabel="" responsive=true>
         </pagination-controls>
 
 

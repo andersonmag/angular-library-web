@@ -1,10 +1,5 @@
 <div class="container-fluid">
     <div class=" row mt-2 text-center text-lg-left">
-
-        <h5 class="text-muted m-3" *ngIf="q">{{result}}
-            <strong>{{q}}</strong>
-        </h5>
-
         <div class="col-lg-3 col-md-4 col-sm-6 text-center mb-3" *ngFor="let book of books | paginate: config" [className]="books.length < 2 ? 'col-lg-6 col-md-4 col-6 text-center mb-3' :
             'col-lg-3 col-md-4 col-6 text-center mb-3'">
             <div class="card-deck">
@@ -57,7 +52,7 @@
             </ul>
         </nav>
         -->
-        <pagination-controls (pageChange)="onPageChange($event)" class="m-3" previousLabel="Anterior"
+        <pagination-controls (pageChange)="alterarPaginacao($event)" class="m-3" previousLabel="Anterior"
             nextLabel="Próximo" responsive=true>
         </pagination-controls>
 

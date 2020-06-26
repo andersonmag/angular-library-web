@@ -6,7 +6,7 @@
                     <span class="material-icons">
                         home
                     </span> </a></li>
-            <li class="breadcrumb-item active" aria-current="page">Cart View</li>
+            <li class="breadcrumb-item active" aria-current="page">Meu Carrinho</li>
         </ol>
     </nav>
 
@@ -72,7 +72,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light bg-secondary mr-2" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-light bg-danger" (click)="esvaziarCart()"
+                    <button type="button" class="btn btn-light bg-danger" (click)="esvaziarCarrinho()"
                         data-dismiss="modal">Deletar</button>
                 </div>
             </div>
@@ -159,7 +159,7 @@
                         </td>
                         <td class="text-right">
                             <h5>
-                                {{cartPrecoTotal | currency:'BRL':true}}
+                                {{precoTotal | currency:'BRL':true}}
                             </h5>
                         </td>
                     </tr>
@@ -171,7 +171,7 @@
                             <h3>Total</h3>
                         </td>
                         <td class="text-right text-info">
-                            <h3>{{cartPrecoTotal | currency:'BRL':true}}</h3>
+                            <h3>{{precoTotal | currency:'BRL':true}}</h3>
                         </td>
                     </tr>
                     <tr>

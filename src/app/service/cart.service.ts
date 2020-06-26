@@ -7,79 +7,66 @@ import { Subject, Observable } from 'rxjs';
 })
 export class CartService {
 
-
   itens: Item[] = []
-  totalQtdd: Subject<number> = new Subject<number>()
-  totalPreco: Subject<number> = new Subject<number>()
-  qtdd: number = 0
+  totalQtdd: Subject<number>
+  totalPreco: Subject<number>
 
-  constructor() { }
+  constructor() {
+    this.totalQtdd = new Subject<number>()
+    this.totalPreco = new Subject<number>()
+  }
 
-  adicionarCarrinho(item: Item): void {
-
-    if (!this.verificarExistenciaLivro(item)) {
+  adicionarCarrinho(item: Item) {
+    let index = this.retornarIndexItemExistente(item)
+    
+    if (index > -1)
+      this.itens[index].quantidade = this.itens[index].quantidade + item.quantidade
+    else
       this.itens.push(item)
-    }
+
     this.calcularPreco()
   }
 
-  verificarExistenciaLivro(item: Item) {
-
-    for (let i = 0; i < this.itens.length; i++) {
-      if (this.itens[i].id == item.id) {
-        this.itens[i].quantidade += Number(item.quantidade)
-        return true
-      }
-    }
+  retornarIndexItemExistente(item: Item) {
+    return this.itens.findIndex(itemIt => itemIt.id == item.id)
   }
 
   calcularPreco() {
-
     let total: number = 0
     let totalQtdd: number = 0
-    this.qtdd = 0
 
-    for (let item of this.itens) {
-      total += item.quantidade * item.preco
-    }
+    this.itens.map(item => {
+      totalQtdd += Number(item.quantidade)
+      total += Number(item.quantidade) * item.preco
+    })
 
-    for (let i = 0; i < this.itens.length; i++) {
-      this.qtdd += Number(this.itens[i].quantidade);
-    }
-
-    this.totalQtdd.next(this.qtdd)
+    this.totalQtdd.next(totalQtdd)
     this.totalPreco.next(total)
   }
 
   deletarTudo() {
-
     this.itens = []
     this.calcularPreco()
   }
 
   alterarQtdd(item: Item, qtdd) {
-
-    if (qtdd <= 0) {
+    if (qtdd <= 0)
       this.remover(item)
-    }
 
     else if (qtdd < 11) {
-      let index: number = this.itens
-        .findIndex(
-          tempCartItem => tempCartItem.id === item.id
-        );
+      let index = this.itens.findIndex(
+        itemIt => itemIt.id === item.id
+      )
 
       this.itens[index].quantidade = qtdd
       this.calcularPreco()
-
     }
   }
 
   remover(item: Item) {
-    let index: number = this.itens
-      .findIndex(
-        tempCartItem => tempCartItem.id === item.id
-      );
+    let index = this.itens.findIndex(
+      itemIt => itemIt.id === item.id
+    )
 
     if (index > -1) {
       this.itens.splice(index, 1);

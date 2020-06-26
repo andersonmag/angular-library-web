@@ -1,5 +1,4 @@
 import { Item } from './../../../model/item';
-import { Book } from './../../../model/book';
 import { CartService } from './../../../service/cart.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -11,28 +10,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  q: string = 'soft'
-  cartSize = 0
+  carrinhoQuantidade = 0
   itens: Item[]
-  cartPrecoTotal = 0
+  precoTotal = 0
 
   constructor(private route: Router, private cartService: CartService) { }
 
   ngOnInit(): void {
+    this.informacoesCarrinho()
+  }
 
-    this.cartService.totalQtdd.subscribe(qtdd => {
-      this.cartSize = qtdd
+  informacoesCarrinho() {
+    this.cartService.totalQtdd.subscribe(totalQtdd => {
+      this.carrinhoQuantidade = totalQtdd
       this.itens = this.cartService.itens
+    })
 
-      this.cartService.totalPreco.subscribe(total => {
-        this.cartPrecoTotal = total
-      })
-    }
+    this.cartService.totalPreco.subscribe(totalPreco =>
+      this.precoTotal = totalPreco
     )
   }
 
   buscar(event): void {
-    this.route.navigate(['/book/search/' + event.target.value])
+    var busca = event.target.value
+    this.route.navigate([`/book/search/${busca}`])
   }
 
   removeDrop() {
