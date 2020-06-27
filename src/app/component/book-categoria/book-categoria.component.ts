@@ -14,6 +14,13 @@ export class BookCategoriaComponent implements OnInit {
   books: Book[]
   categoria: Categoria
   loading: boolean = true
+  config = {
+    itemsPerPage: 0,
+    currentPage: 0,
+    previousLabel: '',
+    nextLabel: '',
+    totalItems: 0
+  }
 
   constructor(private bookService: BookService,
     private activatedRoute: ActivatedRoute) { }

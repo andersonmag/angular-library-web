@@ -2,16 +2,23 @@
 
   <div class="bg-light border-right mt-2" id="sidebar-wrapper">
     <div class="list-group list-group-flush ju">
-      <a class="list-group-item list-group-item-action" name="link" style="cursor: pointer;"
-        *ngFor="let categoria of categorias" routerLink="/book/categoria/{{categoria.link}}">{{categoria.nome}}</a>
+      <a class="list-group-item list-group-item-action " name="link" style="cursor: pointer; display: inline;"
+        *ngFor="let categoria of categorias" routerLink="/book/categoria/{{categoria.link}}">
+
+        <span class="material-icons" style="margin-right: 1px !important; font-size: 2rem; vertical-align: middle;">
+          library_books
+        </span>
+        <small style="vertical-align: middle;">
+          {{categoria.nome}}
+        </small>
+      </a>
     </div>
   </div>
 
-  <span class="pl-3 material-icons icon" (click)="alterarNav()"
-        title="Mudar Sidebar">
+  <span class="pl-3 material-icons icon" (click)="alterarNav()" title="Mudar Sidebar">
     {{icon_name}}
   </span>
-  
+
   <router-outlet></router-outlet>
 
 </div>

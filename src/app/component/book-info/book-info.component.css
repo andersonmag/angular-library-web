@@ -33,7 +33,7 @@ text-decoration: none;
 
 .table th {
     font-weight: 100;
-    color: darkcyan;
+    color: #3498db;
     text-align: center;
     text-shadow: black;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -59,7 +59,7 @@ text-decoration: none;
 .counter {
     width: 50%;
     border-radius: 2px;
-    border: darkcyan 1px solid;
+    border: #2980b9 1px solid;
     font-size: 1.5rem;
     text-align: center;
 }
@@ -80,7 +80,7 @@ text-decoration: none;
 }
 
 .counter .icon:hover {
-    background-color: #009688 !important;
+    background-color: #2980b9 !important;
     color: #fff !important;
     cursor: pointer;
 }

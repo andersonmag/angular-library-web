@@ -2,14 +2,26 @@ body {
     padding-top: 3rem;
     color: #FFF;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    
+    background-color: #FFF !important;
   }
+
+  a {
+    color: #34495e;
+  }
+
+
+  h1 {
+    color: #16a085 !important;
+  }
+
   
 body {
   overflow-x: hidden;
 }
 
 .actual {
-  background-color: #6c757d!important;
+  background-color: #22303f!important;
   color: #FFF !important;
 }
 

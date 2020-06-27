@@ -1,24 +1,17 @@
 <div class="container-fluid">
 
   <nav aria-label="breadcrumb w-5">
-    <ol class="breadcrumb" style="background-color: #fafafa; vertical-align: middle;">
+    <ol class="breadcrumb" style="background-color: #FFF; vertical-align: middle;">
       <li class="breadcrumb-item"><a routerLink="/">
-          <span class="material-icons">
-            home
-          </span> </a></li>
-      <li class="breadcrumb-item active" aria-current="page">{{book?.titulo}}</li>
+          Home </a>
+        </li>
+      <li class="breadcrumb-item active" aria-current="page">{{book?.titulo | slice:0:40}}
+        <span *ngIf="book.titulo.length > 40">...</span>
+      </li>
     </ol>
   </nav>
   <div class="row justify-content-center d-flex">
     <div class="col-lg-10">
-
-      <h2 class="text-success text-center">
-        {{book.titulo}}
-      </h2>
-
-      <hr>
-      <!-- Date/Time -->
-      <p>Criado em {{book.dataCriacao}}</p>
 
       <hr>
 
@@ -44,11 +37,11 @@
             </strong>
           </span>
 
-          <div class="preco ">
+          <div class="preco">
             <hr>
 
-            <h2 class="text-primary text-justify" style="font-family: 'Franklin Gothic Medium',
-                'Arial Narrow', Arial, sans-serif;">{{book.preco | currency:'BRL':true}}</h2>
+            <h2 class="text-justify text-danger" style="font-family: 'Franklin Gothic Medium',
+                'Arial Narrow', Arial, sans-serif">{{book.preco | currency:'BRL':true}}</h2>
             <span class="text-muted">
               <del>
                 {{book.precoAnterior | currency:'BRL':true}}
