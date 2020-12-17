@@ -68,6 +68,14 @@
     background-color: rgba(0, 139, 139, 0.158);
 }
 
+.opcoes-conta {
+    cursor: pointer;
+}
+
+.opcoes-conta small:hover {
+    color: #16a085 !important;
+}
+
 .cart .size {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: 300;

@@ -1,3 +1,4 @@
+import { UsuarioService } from 'src/app/service/usuario.service';
 import { Item } from './../../../model/item';
 import { CartService } from './../../../service/cart.service';
 import { Router } from '@angular/router';
@@ -13,11 +14,15 @@ export class HeaderComponent implements OnInit {
   carrinhoQuantidade = 0
   itens: Item[]
   precoTotal = 0
+  logado:boolean = false
 
-  constructor(private route: Router, private cartService: CartService) { }
+  constructor(private route: Router, private usuarioService:UsuarioService,
+              private cartService: CartService) { }
 
   ngOnInit(): void {
     this.informacoesCarrinho()
+    
+    this.logado = this.usuarioService.isLogado()
   }
 
   informacoesCarrinho() {

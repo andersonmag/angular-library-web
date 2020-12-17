@@ -117,15 +117,33 @@
             shopping_cart
           </span>
         </a>
-
-
+        
         <div class="size d-flex" style="color: #2c3e50;">
 
           {{carrinhoQuantidade}}
         </div>
+        
+      </div>
+
+      <div *ngIf="logado" class="text-center d-flex opcoes-conta" style="align-items: center;">
+
+        <span class="material-icons mr-1" style="font-size: 1.9rem;">
+          account_circle
+          </span>
+
+          <small>Minha Conta</small>
       </div>
 
 
+      <div *ngIf="!logado"  class="text-center d-flex" style="flex-direction: column;">
+        <a href="/login">
+          <span style="font-size: 0.8rem;">Logar</span>
+        </a>
+        <small>Ou</small>
+        <a href="/cadastro">
+          <span style="font-size: 0.8rem;">Criar Conta</span>
+        </a>
+      </div>
     </div>
   </div>
 
