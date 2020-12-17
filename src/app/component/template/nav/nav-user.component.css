@@ -1,0 +1,26 @@
+.list-group-item-action:hover {
+    background-color: #34495e !important;
+    color: #FFF !important;
+  }
+  
+  .list-group-item-action:hover span {
+    color: #16a085 !important;
+  }
+  
+  .list-group-item {
+    padding: .50rem 1.25rem !important;
+  }
+  
+  .icon {
+    font-size: 2rem;
+    cursor: pointer;
+    color: #6c757d;
+  }
+  
+  .actual .material-icons {
+    color: #16a085 !important;
+  }
+  
+  .icon:hover {
+    color: darkgreen;
+  }

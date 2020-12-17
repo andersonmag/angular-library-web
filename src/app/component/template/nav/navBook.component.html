@@ -1,11 +1,15 @@
 <div class="d-flex" id="wrapper">
 
-  <div class="bg-light border-right mt-2" id="sidebar-wrapper">
-    <div class="list-group list-group-flush ju">
+  <div class="bg-light border-right" id="sidebar-wrapper">
+    <div class="list-group list-group-flush ju" id="navBooks">
+
+      <div class="jumbotron text-center text-muted" style="padding: 0.8rem 2rem;">
+        <h5>Categorias</h5>
+      </div>
+
       <a class="list-group-item list-group-item-action " name="link" style="cursor: pointer; display: inline;"
         *ngFor="let categoria of categorias" routerLink="/book/categoria/{{categoria.link}}">
-
-        <span class="material-icons" style="margin-right: 1px !important; font-size: 2rem; vertical-align: middle;">
+        <span class="material-icons" style="margin-right: 1px !important; font-size: 1.5rem; vertical-align: middle;">
           library_books
         </span>
         <small style="vertical-align: middle;">

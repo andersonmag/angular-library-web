@@ -1,0 +1,58 @@
+<div class="d-flex" id="wrapper">
+  
+  <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="list-group list-group-flush ju">
+  
+        <div class="jumbotron text-center text-muted" style="padding: 0.8rem 2rem;">
+          <h5>Minha Conta</h5>
+        </div>
+  
+        <a class="list-group-item list-group-item-action " name="link" style="cursor: pointer; display: inline;"
+          routerLink="/book/categoria/">
+          <span class="material-icons" style="margin-right: 1px !important; font-size: 1.5rem; vertical-align: middle;">
+            savings
+          </span>
+          <small style="vertical-align: middle;">
+            Meus Pedidos
+          </small>
+        </a>
+  
+        <a class="list-group-item list-group-item-action " name="link" style="cursor: pointer; display: inline;"
+        routerLink="/book/categoria/">
+        <span class="material-icons" style="margin-right: 1px !important; font-size: 1.5rem; vertical-align: middle;">
+          account_circle
+        </span>
+        <small style="vertical-align: middle;">
+          Meus Dados
+        </small>
+      </a>
+  
+      <a class="list-group-item list-group-item-action " name="link" style="cursor: pointer; display: inline;"
+      routerLink="/book/categoria/">
+      <span class="material-icons" style="margin-right: 1px !important; font-size: 2rem; vertical-align: middle;">
+        settings
+      </span>
+      <small style="vertical-align: middle;">
+        Alterar Senha
+      </small>
+    </a>
+  
+        <a class="list-group-item list-group-item-action " style="cursor: pointer; display: inline;"
+        (click)="deslogar()">
+        <span class="material-icons" style="margin-right: 1px !important; font-size: 2rem; vertical-align: middle;">
+          exit_to_app
+        </span>
+        <small style="vertical-align: middle;">
+          Sair
+        </small>
+      </a>
+  
+      </div>
+    </div>
+  
+    <span class="pl-3 material-icons icon" (click)="alterarNav()" title="Mudar Sidebar">
+      {{icon_name}}
+    </span>
+  
+    <router-outlet></router-outlet>
+</div>

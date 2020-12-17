@@ -1,20 +1,23 @@
+import { LoginService } from '../../../service/login.service';
+import { UsuarioService } from 'src/app/service/usuario.service';
 import { Router } from '@angular/router';
-import { Categoria } from './../../../model/Categoria';
-import { BookService } from './../../../service/book.service';
+import { Categoria } from '../../../model/Categoria';
+import { BookService } from '../../../service/book.service';
 import { Component, OnInit, AfterViewChecked } from '@angular/core';
 
 @Component({
   selector: 'app-nav',
-  templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css']
+  templateUrl: './navBook.component.html',
+  styleUrls: ['./navBook.component.css']
 })
-export class NavComponent implements OnInit, AfterViewChecked {
+export class NavBookComponent implements OnInit, AfterViewChecked {
 
   categorias: Categoria[]
   index: any
   icon_name: string = "menu_open"
-
-  constructor(private bookService: BookService, private router: Router) { }
+  
+  constructor(private bookService: BookService, private router: Router,
+              private loginService:LoginService) { }
 
   ngOnInit(): void {
     this.obterCategorias()
@@ -22,6 +25,7 @@ export class NavComponent implements OnInit, AfterViewChecked {
 
   ngAfterViewChecked(): void {
     this.buscarCategoriaSelecionada()
+
   }
 
   buscarCategoriaSelecionada() {
@@ -40,6 +44,8 @@ export class NavComponent implements OnInit, AfterViewChecked {
       }
     }
   }
+
+
 
   obterCategorias() {
     this.bookService.obterTodasAsCategorias().subscribe(categorias => {
