@@ -11,14 +11,9 @@ import { Book } from 'src/app/model/book';
 export class BookListComponent implements OnInit {
 
   books: Book[]
-  loading: boolean = true
-  config = {
-    itemsPerPage: 0,
-    currentPage: 0,
-    previousLabel: '',
-    nextLabel: '',
-    totalItems: 0
-  }
+  loading: boolean = false
+  currentPage: number = 0
+  existMore: boolean = false
 
   constructor(private bookService: BookService, private routerActive: ActivatedRoute) { }
 
@@ -29,19 +24,28 @@ export class BookListComponent implements OnInit {
   adquirirLivros() {
     this.bookService.obterTodosOsLivros().subscribe(books => {
       this.books = books['content']
-      this.config.totalItems = books['total_size']
-      this.config.itemsPerPage = books['size']
-    })
+    }, () => console.log("error"),
+       () => {
+         this.ordenarPorTitulo()
+         this.existMore = true;
+       })
   }
 
   onLoad() {
     this.loading = false;
   }
 
-  alterarPaginacao(event) {
-    this.config.currentPage = event;
-    this.bookService.obterLivrosComPaginacao(this.config.currentPage - 1).subscribe(
-      books => this.books = books['content']
+  ordenarPorTitulo() {
+    this.books.sort((book,nextBook) => book.titulo.localeCompare(nextBook.titulo))
+  }
+
+  alterarPaginacao() {
+    this.bookService.obterLivrosComPaginacao(++this.currentPage).subscribe(
+      books => {
+        if(!books.length) this.existMore = false 
+        this.books = this.books.concat(books['content'])
+      }, () => console.log("error"), 
+         () => this.ordenarPorTitulo() 
     )
   }
 
