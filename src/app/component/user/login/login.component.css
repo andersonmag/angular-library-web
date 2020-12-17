@@ -1,0 +1,35 @@
+
+
+.center-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    width: 100%;
+
+}
+
+.custom-file-control:invalid, .form-control:invalid {
+    background-image: linear-gradient(0deg,#009688  2px,rgba(213,0,0,0) 0),
+    linear-gradient(0deg,rgba(0,0,0,.26) 1px,transparent 0);
+}
+
+.form-group span {
+    position: absolute;
+    bottom: 5px;
+    right: 15px;
+    cursor: pointer;
+    color: #6c757d;
+}
+
+.form-group span:hover {
+    color: #009688;
+}
+
+.border {
+    padding: 0;
+}
+
+.alert {
+    padding: 0.25rem 1.2rem !important;
+}
