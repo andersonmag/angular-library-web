@@ -1,3 +1,4 @@
-    <app-header></app-header>
-    <app-nav></app-nav>
-    <app-footer></app-footer>
+<app-loader></app-loader>
+<app-header *ngIf="enable"></app-header>
+<router-outlet></router-outlet>
+<app-footer *ngIf="enable"></app-footer>
