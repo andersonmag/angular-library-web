@@ -1,5 +1,6 @@
 <div class="container-fluid">
 
+
   <nav aria-label="breadcrumb w-5">
     <ol class="breadcrumb" style="background-color: #FFF; vertical-align: middle;">
       <li class="breadcrumb-item"><a routerLink="/">
@@ -20,11 +21,7 @@
       <div class="row">
 
         <div class="col-md-7 col-sm-12">
-          <img class="img-fluid rounded mb-4 mb-lg-0" src="{{book.imagemURL}}" alt="" [hidden]="loading"
-            (load)="this.loading = false;">
-          <div class="spine spinner-grow text-success" role="status" [hidden]="!loading">
-            <span class="sr-only d-flex justify-content-center">Loading...</span>
-          </div>
+          <img class="img-fluid rounded mb-4 mb-lg-0" src="{{book.imagemURL}}" alt="">
         </div>
 
         <div class="col-md-5 col-sm-12 mt-4">
