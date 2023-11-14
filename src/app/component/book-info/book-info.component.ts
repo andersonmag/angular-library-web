@@ -14,51 +14,49 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class BookInfoComponent implements OnInit {
 
   book: Book
-  books: Book[]
+  recomendados: Book[]
   loading: boolean = true
-  carrinhoQuantidade: number = 0
-  totalPreco: number = 0
+  quantidadeItensCarrinho: number = 0
+  totalItensCarrinho: number = 0
   sliceValor: number = 1000
   quantidade: number = 1
   midias = Midia
   midiaSelecionada: Midia = Midia.DIGITAL
 
-  constructor(private bookService: BookService, private cartService: CartService,
+  constructor(private bookService: BookService, private carrinhoService: CartService,
     private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    this.adquirirLivros()
+    this.listarLivros()
   }
 
-  adquirirLivros() {
+  listarLivros() {
     this.activatedRoute.params.subscribe(params => {
       const link = params.link
-
       this.bookService.obterLivroPorLink(link).subscribe(book => {
         this.book = book
         this.bookService.obterLivrosPorCategoria(this.book.categoria.link).subscribe(
           books => {
-            this.books = books['content']
+            this.recomendados = books['content']
 
-            let index = this.books.findIndex(bookIt => bookIt.id == this.book.id)
-            this.books.splice(index, 1)
-            console.log(index)
+            let index = this.recomendados.findIndex(recomendado => recomendado.id == this.book.id)
+            this.recomendados.splice(index, 1)
           })
       }, (err) => {
         this.router.navigate(['/'])
       })
     })
 
-    this.decrement()
+    this.decrementQuantidade()
     this.detalhesCarrinho()
   }
 
   detalhesCarrinho() {
-    this.cartService.totalPreco.subscribe(
-      total => this.totalPreco = total
+    this.carrinhoService.totalPreco.subscribe(
+      total => this.totalItensCarrinho = total
     )
-    this.cartService.totalQtdd.subscribe(
-      qtdd => this.carrinhoQuantidade = qtdd
+    this.carrinhoService.totalQtdd.subscribe(
+      qtdd => this.quantidadeItensCarrinho = qtdd
     )
   }
 
@@ -68,28 +66,28 @@ export class BookInfoComponent implements OnInit {
       this.sliceValor = 1000
   }
 
-  increment() {
-    var dc = document.getElementById("decrement").style
+  incrementQuantidade() {
+    var btnAtualizaQuantidade = document.getElementById("atualizaQuantidade").style
     this.quantidade < 10 ? this.quantidade++ : ''
 
     if (this.quantidade > 1) {
-      dc.pointerEvents = 'all'
-      dc.opacity = "inherit"
+      btnAtualizaQuantidade.pointerEvents = 'all'
+      btnAtualizaQuantidade.opacity = "inherit"
     }
   }
 
-  decrement() {
-    var dc = document.getElementById("decrement").style
+  decrementQuantidade() {
+    var btnAtualizaQuantidade = document.getElementById("atualizaQuantidade").style
     this.quantidade > 1 ? this.quantidade-- : ''
 
     if (this.quantidade == 1) {
-      dc.pointerEvents = 'none'
-      dc.opacity = "0.5"
+      btnAtualizaQuantidade.pointerEvents = 'none'
+      btnAtualizaQuantidade.opacity = "0.5"
     }
   }
 
-  adicionarItemAoCarrinho(book: Book) {
+  adicionarItemCarrinho(book: Book) {
     var item = new Item(book, this.quantidade, this.midiaSelecionada)
-    this.cartService.adicionarCarrinho(item)
+    this.carrinhoService.adicionarItemCarrinho(item)
   }
 }

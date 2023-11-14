@@ -13,7 +13,7 @@ export class BookSearchComponent implements OnInit {
   books: Book[]
   loading: boolean = true
   q: string
-  result: string
+  MensagemResultado: string
   config = {
     itemsPerPage: 0,
     currentPage: 0,
@@ -34,13 +34,13 @@ export class BookSearchComponent implements OnInit {
       this.q = params.q
       this.bookService.pesquisarLivros(this.q).subscribe(books => {
         this.books = books['content']
-        this.result = "Resultados para "
+        this.MensagemResultado = "Resultados para "
         this.config.totalItems = books['total_size']
         this.config.itemsPerPage = books['size']
       }, () => {
         this.books = []
         this.config.totalItems = 0
-        this.result = "Nenhum resultado encontrado para "
+        this.MensagemResultado = "Nenhum resultado encontrado para "
       })
     })
   }

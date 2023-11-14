@@ -26,10 +26,10 @@ export class BookCategoriaComponent implements OnInit {
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.adquirirLivros()
+    this.listarLivros()
   }
 
-  adquirirLivros() {
+  listarLivros() {
     this.activatedRoute.params.subscribe(params => {
       const link = params.link
       this.bookService.obterLivrosPorCategoria(link).subscribe(books => {
