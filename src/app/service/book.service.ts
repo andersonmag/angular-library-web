@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class BookService {
 
-  private baseUrl:string = "https://library-angular-api.herokuapp.com/api/livros"
+  private baseUrl:string = "https://spring-api-library.onrender.com/api/livros"
 
   constructor(private httpClient: HttpClient) { }
   
@@ -22,11 +22,11 @@ export class BookService {
   }
 
   pesquisarLivros(q:string): Observable<Book[]> {
-    return this.httpClient.get<Book[]>(this.baseUrl + "?q=" + q)
+    return this.httpClient.get<Book[]>(this.baseUrl + "?filtro=" + q)
   }
 
   obterLivroPorLink(link:string): Observable<Book> {
-    return this.httpClient.get<Book>(this.baseUrl + "/search/" + link)
+    return this.httpClient.get<Book>(this.baseUrl + "/link/" + link)
   }
 
   obterTodasAsCategorias(): Observable<Categoria[]> {

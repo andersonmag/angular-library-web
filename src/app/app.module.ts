@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LOCALE_ID } from '@angular/core';
 import { NgxLoadingModule } from 'ngx-loading';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AppComponent } from './app.component';
 import { BookInfoComponent } from './component/book-info/book-info.component';
@@ -13,7 +14,6 @@ import { HeaderComponent } from './component/template/header/header.component';
 import { NavBookComponent } from './component/template/nav/navBook.component';
 import { AppRoutingRoutingModule } from './app-routing-routing.module';
 import { BookCategoriaComponent } from './component/book-categoria/book-categoria.component';
-import { NgxPaginationModule } from 'ngx-pagination';
 
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -45,7 +45,7 @@ registerLocaleData(ptBr)
     NavUserComponent,
     PedidosComponent,
     MinhaContaComponent,
-    LoaderComponent 
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -56,6 +56,7 @@ registerLocaleData(ptBr)
     FormsModule,
     NgxLoadingModule.forRoot({
       fullScreenBackdrop: true,
+      
     })
   ],
   providers: [
