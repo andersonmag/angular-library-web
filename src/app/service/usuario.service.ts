@@ -9,12 +9,15 @@ import { Injectable } from '@angular/core';
 })
 export class UsuarioService {
 
-  private baseUrl:string = "https://library-angular-api.herokuapp.com/api/usuarios"
+  private baseUrl:string = "https://spring-api-library.onrender.com/api/usuarios"
 
   constructor(private httpClient: HttpClient, private tokenService:TokenService) { }
 
   save(usuario: Usuario) {
-    return this.httpClient.post(this.baseUrl, JSON.stringify(usuario))
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    }
+    return this.httpClient.post(this.baseUrl, JSON.stringify(usuario), httpOptions)
   }
 
   isLogado() {

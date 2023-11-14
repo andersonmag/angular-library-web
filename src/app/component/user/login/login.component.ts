@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
     this.loginService
             .authenticate(this.usuario)
             .subscribe(tk => {
-              var token = JSON.parse(JSON.stringify(tk)).Authorization.split(' ')[1]
+              var token = JSON.parse(JSON.stringify(tk))['token'].split(' ')[1]
 
               this.usuarioService.setToken(token)
               this.router.navigate(['/'])

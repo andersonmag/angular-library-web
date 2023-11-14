@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { TokenService } from './token.service';
 import { Usuario } from './../model/usuario';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 })
 export class LoginService {
 
-  private baseUrl:string = "https://library-angular-api.herokuapp.com/api/login"
+  private baseUrl:string = "https://spring-api-library.onrender.com/api/login"
 
   constructor(private http: HttpClient, private router: Router,
               private tokenService:TokenService) { }
@@ -19,8 +19,12 @@ export class LoginService {
                   "email":usuario.email,
                   "senha":usuario.senha 
                 }
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    }
+    console.log(body)                
 
-    return this.http.post(this.baseUrl, JSON.stringify(body))
+    return this.http.post(this.baseUrl, JSON.stringify(body), httpOptions)
   }
 
   isLogado() {
