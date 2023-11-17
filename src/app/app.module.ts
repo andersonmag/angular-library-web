@@ -15,7 +15,7 @@ import { NavBookComponent } from './component/template/nav/navBook.component';
 import { AppRoutingRoutingModule } from './app-routing-routing.module';
 import { BookCategoriaComponent } from './component/book-categoria/book-categoria.component';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
@@ -56,8 +56,8 @@ registerLocaleData(ptBr)
     FormsModule,
     NgxLoadingModule.forRoot({
       fullScreenBackdrop: true,
-      
-    })
+    }),
+    ReactiveFormsModule
   ],
   providers: [
     {

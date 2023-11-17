@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { Usuario } from './../../../model/usuario';
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from 'src/app/service/usuario.service';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -11,14 +12,27 @@ import { UsuarioService } from 'src/app/service/usuario.service';
 export class RegisterComponent implements OnInit {
 
   usuario: Usuario = new Usuario()
+  registerForm: FormGroup;
 
   constructor(private usuarioService: UsuarioService,
-              private router: Router) { }
+    private formBuilder: FormBuilder,
+    private router: Router) {}
 
   ngOnInit(): void {
+    this.registerForm = this.formBuilder.group({ 
+      nome: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      senha: ['', Validators.required]
+    }, { updateOn: 'blur' })
   }
 
   cadastrar() {
+    this.usuario = {
+      nome: this.registerForm.get('nome').value,
+      email: this.registerForm.get('email').value,
+      senha: this.registerForm.get('senha').value  
+    }
+
     this.usuarioService.save(this.usuario)
       .subscribe(() => {
         this.router.navigate(['/'])

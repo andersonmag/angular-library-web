@@ -12,53 +12,45 @@
   </h1>
   <div class="center-box  border rounded-bottom rounded-right pl-5 pr-5 pt-4">
 
-    <form class="mb-3 justify-content-center" style=" width: 300px;" (submit)="cadastrar()">
-
+    <form class="mb-3 justify-content-center" [formGroup]="registerForm" style=" width: 300px;" (submit)="cadastrar()">
       <h5 class="mb-1 font-weight-normal text-muted text-center">Cadastro</h5>
-
+      
       <div class="form-group justify-content-center">
         <label for="nome">Nome</label>
-        <input [(ngModel)]="usuario.nome" #nome="ngModel" [ngModelOptions]="{standalone: true}" type="text" id="nome"
-          class="form-control" placeholder="Digite o Nome" required>
-
-        <div *ngIf="nome.invalid" class="alert alert-danger" role="alert">
-          Informe o Nome
-        </div>
+        <input formControlName="nome" type="text" id="nome" class="form-control" placeholder="Digite o nome">
+          <div *ngIf="registerForm.get('nome').dirty && registerForm.get('nome').errors?.required" class="alert alert-danger" role="alert">
+            Informe o Nome
+          </div>
       </div>
 
       <div class="form-group">
         <label for="email">Email</label>
-        <input [(ngModel)]="usuario.email" #email="ngModel" [ngModelOptions]="{standalone: true}" type="email"
-          id="email" class="form-control" placeholder="Digite o Email" required>
-
-        <div *ngIf="email.invalid" class="alert alert-danger" role="alert">
-          Informe o Email
-        </div>
+        <input formControlName="email" type="email" id="email" class="form-control" placeholder="Digite o Email">
+          <div *ngIf="registerForm.get('email').dirty && registerForm.get('email').errors?.required" class="alert alert-danger" role="alert">
+            Informe o Email
+          </div>
+          <div *ngIf="registerForm.get('email').dirty && registerForm.get('email').errors?.email" class="alert alert-danger" role="alert">
+            Email invalido
+          </div>
       </div>
       <div class="form-group">
         <label for="senha">Senha</label>
-        <input [(ngModel)]="usuario.senha" #senha="ngModel" [ngModelOptions]="{standalone: true}" type="password"
-          id="senha" class="form-control" placeholder="Digite a Senha" required>
-
+        <input formControlName="senha" type="password" id="senha" class="form-control" placeholder="Digite a Senha">
         <span class="material-icons" (click)="changePasswordInput()">
           visibility
         </span>
-
-        <div *ngIf="senha.invalid" class="alert alert-danger" role="alert">
+        <div *ngIf="registerForm.get('senha').dirty && registerForm.get('senha').errors?.required" class="alert alert-danger" role="alert">
           Informe a Senha
         </div>
       </div>
 
       <button class="btn btn-primary btn-block active mt-2" type="submit"
-        [disabled]="email.invalid || senha.invalid || nome.invalid">Cadastrar</button>
+        [disabled]="!registerForm.valid">Cadastrar</button>
 
       <div class="mt-4 text-center" style="flex-direction: column;">
         <a href="/login" style="font-size: 0.9rem;">Já possuo uma conta</a>
       </div>
 
     </form>
-
-
-
   </div>
 </div>

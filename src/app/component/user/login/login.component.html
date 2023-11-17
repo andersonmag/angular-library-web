@@ -1,6 +1,5 @@
 <div class="container" style="width: 500px !important;">
 
-
   <h1 class="font-weight-light text-center mt-4 mb-3" style="font-family: 'Gill Sans', 
 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
     <a href="/" style="color: #16a085 !important;">
@@ -12,36 +11,32 @@
     </a>
   </h1>
   <div class="center-box border rounded-bottom rounded-right pl-5 pr-5 pt-4">
-
-
-    <form class="mb-4" style=" width: 300px;" (submit)="fazerLogin()">
+    <form class="mb-4" style=" width: 300px;" [formGroup]="loginForm" (submit)="fazerLogin()">
 
       <h5 class="mb-1 font-weight-normal text-muted text-center">Entrar no Sistema</h5>
 
       <div class="form-group">
         <label for="email">Email</label>
-        <input [(ngModel)]="usuario.email" #email="ngModel" [ngModelOptions]="{standalone: true}" type="email"
-          id="email" class="form-control" placeholder="Digite o Email" required>
-
-        <div *ngIf="email.invalid" class="alert alert-danger" role="alert">
+        <input formControlName="email" type="email" id="email" class="form-control" placeholder="Digite o Email">
+        <div *ngIf="loginForm.get('email').dirty && loginForm.get('email').errors?.required" class="alert alert-danger" role="alert">
           Informe o Email
         </div>
+        <div *ngIf="loginForm.get('email').dirty && loginForm.get('email').errors?.email" class="alert alert-danger" role="alert">
+          Email invalido
+        </div>
       </div>
+
       <div class="form-group">
         <label for="senha">Senha</label>
-        <input [(ngModel)]="usuario.senha" #senha="ngModel" [ngModelOptions]="{standalone: true}" type="password"
-          id="senha" class="form-control" placeholder="Digite a Senha" required>
-
+        <input formControlName="senha" type="password" id="senha" class="form-control" placeholder="Digite a Senha">
         <span class="material-icons" (click)="changePasswordInput()">
           visibility
         </span>
-
-        <div *ngIf="senha.invalid" class="alert alert-danger" role="alert">
+        <div *ngIf="loginForm.get('senha').dirty && loginForm.get('senha').errors?.required" class="alert alert-danger" role="alert">
           Informe a Senha
         </div>
-
-
       </div>
+
       <a href="#" style="font-size: 0.9rem;">Esqueceu a senha?</a>
 
       <!-- <div class="checkbox mb-3">
@@ -49,21 +44,16 @@
           <input type="checkbox" value="remember-me"> Me lembre
         </label>
       </div> -->
-      <button class="btn btn-primary btn-block active mt-2" type="submit"
-        [disabled]="email.invalid || senha.invalid">Logar</button>
-      <div class="text-center">
+      <button class="btn btn-primary btn-block active mt-2" type="submit" 
+        [disabled]="!loginForm.valid">Logar</button>
 
+      <div class="text-center">
         <div class="mt-3" style="flex-direction: column;">
           <span>Ou então</span>
           <br>
           <a href="/cadastro" style="font-size: 0.9rem;">Ainda não possuo uma conta</a>
         </div>
-
       </div>
-
     </form>
-
-
-
   </div>
 </div>
