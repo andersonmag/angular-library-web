@@ -13,21 +13,21 @@ export class BookListComponent implements OnInit {
   books: Book[]
   loading: boolean = false
   currentPage: number = 0
-  existMore: boolean = false
+  existeMaisLivrosPaginacao: boolean = false
 
   constructor(private bookService: BookService, private routerActive: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.adquirirLivros()
+    this.listarLivros()
   }
 
-  adquirirLivros() {
+  listarLivros() {
     this.bookService.obterTodosOsLivros().subscribe(books => {
       this.books = books['content']
     }, () => console.log("error"),
        () => {
          this.ordenarPorTitulo()
-         this.existMore = true;
+         this.existeMaisLivrosPaginacao = true;
        })
   }
 
@@ -36,13 +36,13 @@ export class BookListComponent implements OnInit {
   }
 
   ordenarPorTitulo() {
-    this.books.sort((book,nextBook) => book.titulo.localeCompare(nextBook.titulo))
+    this.books.sort((book,proximoBook) => book.titulo.localeCompare(proximoBook.titulo))
   }
 
   alterarPaginacao() {
     this.bookService.obterLivrosComPaginacao(++this.currentPage).subscribe(
       books => {
-        if(!books.length) this.existMore = false 
+        if(!books.length) this.existeMaisLivrosPaginacao = false 
         this.books = this.books.concat(books['content'])
       }, () => console.log("error"), 
          () => this.ordenarPorTitulo() 

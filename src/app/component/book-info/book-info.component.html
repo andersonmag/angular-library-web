@@ -1,6 +1,4 @@
 <div class="container-fluid">
-
-
   <nav aria-label="breadcrumb w-5">
     <ol class="breadcrumb" style="background-color: #FFF; vertical-align: middle;">
       <li class="breadcrumb-item"><a routerLink="/">
@@ -13,9 +11,7 @@
   </nav>
   <div class="row justify-content-center d-flex">
     <div class="col-lg-10">
-
       <hr>
-
       <!-- Informações sobre o livro -->
 
       <div class="row">
@@ -49,13 +45,13 @@
             <label for="" class="pt-4" style="font-size: 0.8rem;">Quantidade</label><br>
             <div class="counter">
 
-              <span class="material-icons icon" (click)="increment()" id="increment">
+              <span class="material-icons icon" (click)="incrementQuantidade()" id="atualizaQuantidade">
                 add
               </span>
 
               <span id="quantity">{{quantidade}}</span>
 
-              <span class="material-icons icon remove" (click)="decrement()" id="decrement">
+              <span class="material-icons icon remove" (click)="decrementQuantidade()" id="atualizaQuantidade">
                 remove
               </span>
             </div>
@@ -68,7 +64,7 @@
             </div>
 
             <button type="button" class="btn btn-raised btn-sm btn-danger" style="font-size: 1rem;"
-              (click)="adicionarItemAoCarrinho(book)" data-toggle="modal" data-target="#exampleModalCenter">
+              (click)="adicionarItemCarrinho(book)" data-toggle="modal" data-target="#exampleModalCenter">
               Adicionar ao Carrinho
               <span class="material-icons" style="vertical-align: middle;">
                 add_shopping_cart
@@ -103,11 +99,11 @@
                 shopping_cart
               </span>
 
-              <span class="badge badge-secondary badge-pill mr-2" style="font-size: 1rem;">{{carrinhoQuantidade}}</span>
+              <span class="badge badge-secondary badge-pill mr-2" style="font-size: 1rem;">{{quantidadeItensCarrinho}}</span>
               Livro(s)
               | Total:
               <span class="badge badge-secondary badge-pill ml-2" style="font-size: 1rem;">
-                {{totalPreco | currency:'BRL':true}}
+                {{totalItensCarrinho | currency:'BRL':true}}
               </span>
             </li>
           </ul>
@@ -130,7 +126,6 @@
     </div>
   </div>
 
-
   <div class="row d-flex justify-content-center mt-3">
     <table class="table table-striped table-hover">
       <tbody>
@@ -152,9 +147,7 @@
         </tr>
       </tbody>
     </table>
-
   </div>
-
 
   <div class="row d-flex justify-content-center">
     <div class="col-12">
@@ -179,7 +172,7 @@
   <h2 class="m-1 text-secondary text-justify">Relacionados: </h2>
 
   <div class="row">
-    <div class="col-md-3 mb-5" *ngFor="let bookIt of books">
+    <div class="col-md-3 mb-5" *ngFor="let bookIt of recomendados">
       <div class="card">
         <a href="/book/{{bookIt.link}}" class="justify-content-center d-flex text-center">
           <img class="img-thumbnail card-img-top" src="{{bookIt.imagemURL}}" alt="" style="width: 200px;">

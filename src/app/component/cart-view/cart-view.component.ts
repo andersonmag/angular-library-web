@@ -21,19 +21,18 @@ export class CartViewComponent implements OnInit {
   }
 
   carrinhoDetalhes() {
-
     this.cartService.totalPreco.subscribe(total => {
       this.precoTotal = total
       this.itens = this.cartService.itens
     })
 
-    this.cartService.calcularPreco();
+    this.cartService.calcularTotais();
   }
 
   alterarQuantidade(item: Item, event) {
     let itemQuantidade = event.target.value
 
-    this.cartService.alterarQtdd(item, itemQuantidade)
+    this.cartService.alterarQuantidade(item, itemQuantidade)
   }
 
   deletar(item: Item) {

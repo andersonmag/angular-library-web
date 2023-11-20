@@ -16,26 +16,26 @@ export class CartService {
     this.totalPreco = new Subject<number>()
   }
 
-  adicionarCarrinho(item: Item) {
-    let index = this.retornarIndexItemExistente(item)
+  adicionarItemCarrinho(item: Item) {
+    let indexItemExistente = this.retornarIndexItemExistente(item)
     
-    if (index > -1)
-      this.itens[index].quantidade = this.itens[index].quantidade + item.quantidade
+    if (indexItemExistente > -1)
+      this.itens[indexItemExistente].quantidade = this.itens[indexItemExistente].quantidade + item.quantidade
     else
       this.itens.push(item)
 
-    this.calcularPreco()
+    this.calcularTotais()
   }
 
   retornarIndexItemExistente(item: Item) {
     return this.itens.findIndex(itemIt => itemIt.id == item.id)
   }
 
-  calcularPreco() {
+  calcularTotais() {
     let total: number = 0
     let totalQtdd: number = 0
 
-    this.itens.map(item => {
+    this.itens.forEach(item => {
       totalQtdd += Number(item.quantidade)
       total += Number(item.quantidade) * item.preco
     })
@@ -46,31 +46,27 @@ export class CartService {
 
   deletarTudo() {
     this.itens = []
-    this.calcularPreco()
+    this.totalQtdd = new Subject<number>()
+    this.totalPreco = new Subject<number>()
   }
 
-  alterarQtdd(item: Item, qtdd) {
-    if (qtdd <= 0)
+  alterarQuantidade(item: Item, quantidade) {
+    if (quantidade <= 0) {
       this.remover(item)
+    } else if (quantidade < 11) {
+      let indexItem = this.retornarIndexItemExistente(item)
 
-    else if (qtdd < 11) {
-      let index = this.itens.findIndex(
-        itemIt => itemIt.id === item.id
-      )
-
-      this.itens[index].quantidade = qtdd
-      this.calcularPreco()
+      this.itens[indexItem].quantidade = quantidade
+      this.calcularTotais()
     }
   }
 
   remover(item: Item) {
-    let index = this.itens.findIndex(
-      itemIt => itemIt.id === item.id
-    )
+    let indexItem = this.retornarIndexItemExistente(item)
 
-    if (index > -1) {
-      this.itens.splice(index, 1);
-      this.calcularPreco();
+    if (indexItem > -1) {
+      this.itens.splice(indexItem, 1);
+      this.calcularTotais();
     }
   }
 }
