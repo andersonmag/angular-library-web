@@ -1,8 +1,7 @@
 <div class="card-deck">
     <div class="card">
         <a [routerLink]="[ '/book', book.link ]">
-            // show image only after load
-            <image-loading [imageUrl]="book.imagemURL" [imageWidth]="180" />
+            <image-loading [imageUrl]="book.imagemURL" imageWidth="180" [imageTitle]="book.titulo"></image-loading>
         </a>
         <div class="card-body">
             <a [routerLink]="[ '/book', book.link ]">
