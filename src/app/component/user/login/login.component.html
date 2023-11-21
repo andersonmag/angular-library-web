@@ -18,12 +18,10 @@
       <div class="form-group">
         <label for="email">Email</label>
         <input formControlName="email" type="email" id="email" class="form-control" placeholder="Digite o Email">
-        <div *ngIf="loginForm.get('email').dirty && loginForm.get('email').errors?.required" class="alert alert-danger" role="alert">
-          Informe o Email
-        </div>
-        <div *ngIf="loginForm.get('email').dirty && loginForm.get('email').errors?.email" class="alert alert-danger" role="alert">
-          Email invalido
-        </div>
+        <message-error-form *ngIf="loginForm.get('email').dirty && loginForm.get('email').errors?.required"
+          mensagem="Informe o Email"></message-error-form>
+        <message-error-form *ngIf="loginForm.get('email').dirty && loginForm.get('email').errors?.email"
+          mensagem="Email invalido"></message-error-form>
       </div>
 
       <div class="form-group">
@@ -32,9 +30,8 @@
         <span class="material-icons" (click)="changePasswordInput()">
           visibility
         </span>
-        <div *ngIf="loginForm.get('senha').dirty && loginForm.get('senha').errors?.required" class="alert alert-danger" role="alert">
-          Informe a Senha
-        </div>
+        <message-error-form *ngIf="loginForm.get('senha').dirty && loginForm.get('senha').errors?.required"
+          mensagem="Informe a Senha"></message-error-form>
       </div>
 
       <a href="#" style="font-size: 0.9rem;">Esqueceu a senha?</a>
@@ -44,8 +41,7 @@
           <input type="checkbox" value="remember-me"> Me lembre
         </label>
       </div> -->
-      <button class="btn btn-primary btn-block active mt-2" type="submit" 
-        [disabled]="!loginForm.valid">Logar</button>
+      <button class="btn btn-primary btn-block active mt-2" type="submit" [disabled]="!loginForm.valid">Logar</button>
 
       <div class="text-center">
         <div class="mt-3" style="flex-direction: column;">

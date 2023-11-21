@@ -12,7 +12,6 @@ export class NavUserComponent implements OnInit {
 
   icon_name: string = "menu_open"
 
-
   constructor(private bookService: BookService, private router: Router,
     private loginService:LoginService) { }
 

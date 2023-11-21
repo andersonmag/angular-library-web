@@ -25,7 +25,6 @@ export class NavBookComponent implements OnInit, AfterViewChecked {
 
   ngAfterViewChecked(): void {
     this.buscarCategoriaSelecionada()
-
   }
 
   buscarCategoriaSelecionada() {
@@ -44,8 +43,6 @@ export class NavBookComponent implements OnInit, AfterViewChecked {
       }
     }
   }
-
-
 
   obterCategorias() {
     this.bookService.obterTodasAsCategorias().subscribe(categorias => {
