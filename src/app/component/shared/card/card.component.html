@@ -1,0 +1,31 @@
+<div class="card-deck">
+    <div class="card">
+        <a [routerLink]="[ '/book', book.link ]">
+            // show image only after load
+            <image-loading [imageUrl]="book.imagemURL" [imageWidth]="180" />
+        </a>
+        <div class="card-body">
+            <a [routerLink]="[ '/book', book.link ]">
+                <span class="card-title" style="font-size: 0.9rem;" title="{{book.titulo}}">{{book.titulo | slice:0:50}}
+                    <span *ngIf="book.titulo.length > 50">...</span>
+                    <p class="card-text" style="font-size: 0.9rem;">
+                        <small class="text-muted">
+                            Livro por
+                            <strong>
+                                {{book.autor}}
+                            </strong>
+                        </small>
+                    </p>
+                </span>
+            </a>
+            <h6 class="mt-2">
+                <span style=" font-weight: 600; color: #16a085;">{{book.preco | currency:'BRL':true}}</span>
+            </h6>
+            <span class="text-muted">
+                <del>
+                    {{book.precoAnterior | currency:'BRL':true}}
+                </del>
+            </span>
+        </div>
+    </div>
+</div>
