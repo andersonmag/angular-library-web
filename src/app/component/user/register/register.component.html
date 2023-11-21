@@ -18,20 +18,17 @@
       <div class="form-group justify-content-center">
         <label for="nome">Nome</label>
         <input formControlName="nome" type="text" id="nome" class="form-control" placeholder="Digite o nome">
-          <div *ngIf="registerForm.get('nome').dirty && registerForm.get('nome').errors?.required" class="alert alert-danger" role="alert">
-            Informe o Nome
-          </div>
+          <message-error-form *ngIf="registerForm.get('nome').dirty && registerForm.get('nome').errors?.required"
+           mensagem="Informe o Nome"></message-error-form>
       </div>
 
       <div class="form-group">
         <label for="email">Email</label>
         <input formControlName="email" type="email" id="email" class="form-control" placeholder="Digite o Email">
-          <div *ngIf="registerForm.get('email').dirty && registerForm.get('email').errors?.required" class="alert alert-danger" role="alert">
-            Informe o Email
-          </div>
-          <div *ngIf="registerForm.get('email').dirty && registerForm.get('email').errors?.email" class="alert alert-danger" role="alert">
-            Email invalido
-          </div>
+        <message-error-form *ngIf="registerForm.get('email').dirty && registerForm.get('email').errors?.required"
+           mensagem="Informe o Email"></message-error-form>
+        <message-error-form *ngIf="registerForm.get('email').dirty && registerForm.get('email').errors?.email"
+           mensagem="Email invalido"></message-error-form>
       </div>
       <div class="form-group">
         <label for="senha">Senha</label>
@@ -39,9 +36,8 @@
         <span class="material-icons" (click)="changePasswordInput()">
           visibility
         </span>
-        <div *ngIf="registerForm.get('senha').dirty && registerForm.get('senha').errors?.required" class="alert alert-danger" role="alert">
-          Informe a Senha
-        </div>
+        <message-error-form *ngIf="registerForm.get('senha').dirty && registerForm.get('senha').errors?.required"
+           mensagem="Informe a Senha"></message-error-form>
       </div>
 
       <button class="btn btn-primary btn-block active mt-2" type="submit"

@@ -1,16 +1,16 @@
 import { GuardGuard } from './service/guard.guard';
-import { PedidosComponent } from './component/user/pedidos/pedidos.component';
-import { MinhaContaComponent } from './component/user/minha-conta/minha-conta.component';
-import { NavUserComponent } from './component/template/nav/nav-user.component';
-import { NavBookComponent } from './component/template/nav/navBook.component';
+import { PedidosComponent } from './component/user/orders/pedidos.component';
+import { MinhaContaComponent } from './component/user/my-account/minha-conta.component';
+import { NavUserComponent } from './component/shared/template/nav/nav-user.component';
+import { NavBookComponent } from './component/shared/template/nav/navBook.component';
 import { LoginComponent } from './component/user/login/login.component';
-import { BookSearchComponent } from './component/book-search/book-search.component';
-import { BookCategoriaComponent } from './component/book-categoria/book-categoria.component';
-import { BookListComponent } from './component/book-list/book-list.component';
+import { BookSearchComponent } from './component/book/book-search/book-search.component';
+import { BookCategoriaComponent } from './component/book/book-categoria/book-categoria.component';
+import { BookListComponent } from './component/book/book-list/book-list.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { BookInfoComponent } from './component/book-info/book-info.component';
-import { CartViewComponent } from './component/cart-view/cart-view.component';
+import { BookInfoComponent } from './component/book/book-info/book-info.component';
+import { CartViewComponent } from './component/cart/cart-view/cart-view.component';
 import { RegisterComponent } from './component/user/register/register.component';
 
 const routes: Routes = [

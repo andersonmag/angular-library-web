@@ -1,0 +1,5 @@
+<img (load)="imageLoading = false;" (error)="imageLoading = false;" class="" src="{{imageUrl}}" [alt]="imageTitle"
+    width="{{imageWidth}}">
+<div class="spine spinner-grow text-success" role="status" [hidden]="!imageLoading">
+    <span class="sr-only d-flex justify-content-center">Loading...</span>
+</div>
