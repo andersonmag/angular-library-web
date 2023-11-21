@@ -1,8 +1,8 @@
-import { Midia } from './../../model/midia';
-import { CartService } from './../../service/cart.service';
-import { Item } from './../../model/item';
+import { Midia } from '../../../model/midia';
+import { CartService } from '../../../service/cart.service';
+import { Item } from '../../../model/item';
 import { Book } from 'src/app/model/book';
-import { BookService } from './../../service/book.service';
+import { BookService } from '../../../service/book.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -18,7 +18,7 @@ export class BookInfoComponent implements OnInit {
   loading: boolean = true
   quantidadeItensCarrinho: number = 0
   totalItensCarrinho: number = 0
-  sliceValor: number = 1000
+  tamanhoMaximoExibeDescricaoLivro: number = 1000
   quantidade: number = 1
   midias = Midia
   midiaSelecionada: Midia = Midia.DIGITAL
@@ -60,10 +60,10 @@ export class BookInfoComponent implements OnInit {
     )
   }
 
-  alterarValorSlice() {
-    this.sliceValor == 1000 ?
-      this.sliceValor = this.book.descricao.length :
-      this.sliceValor = 1000
+  exibirDescricaoCompletaLivro() {
+    this.tamanhoMaximoExibeDescricaoLivro == 1000 ?
+      this.tamanhoMaximoExibeDescricaoLivro = this.book.descricao.length :
+      this.tamanhoMaximoExibeDescricaoLivro = 1000
   }
 
   incrementQuantidade() {

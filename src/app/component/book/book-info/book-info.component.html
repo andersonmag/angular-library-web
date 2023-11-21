@@ -3,7 +3,7 @@
     <ol class="breadcrumb" style="background-color: #FFF; vertical-align: middle;">
       <li class="breadcrumb-item"><a routerLink="/">
           Home </a>
-        </li>
+      </li>
       <li class="breadcrumb-item active" aria-current="page">{{book?.titulo | slice:0:40}}
         <span *ngIf="book.titulo.length > 40">...</span>
       </li>
@@ -15,7 +15,6 @@
       <!-- Informações sobre o livro -->
 
       <div class="row">
-
         <div class="col-md-7 col-sm-12">
           <img class="img-fluid rounded mb-4 mb-lg-0" src="{{book.imagemURL}}" alt="">
         </div>
@@ -32,7 +31,6 @@
 
           <div class="preco">
             <hr>
-
             <h2 class="text-justify text-danger" style="font-family: 'Franklin Gothic Medium',
                 'Arial Narrow', Arial, sans-serif">{{book.preco | currency:'BRL':true}}</h2>
             <span class="text-muted">
@@ -48,9 +46,7 @@
               <span class="material-icons icon" (click)="incrementQuantidade()" id="atualizaQuantidade">
                 add
               </span>
-
               <span id="quantity">{{quantidade}}</span>
-
               <span class="material-icons icon remove" (click)="decrementQuantidade()" id="atualizaQuantidade">
                 remove
               </span>
@@ -90,7 +86,8 @@
             <strong class="text-success">
               + {{quantidade}} Novo(s) Livro(s)
             </strong>
-            Adicionado(s) ao Seu Carrinho</h6>
+            Adicionado(s) ao Seu Carrinho
+          </h6>
 
           <ul class="list-group">
             <li class="list-group-item"
@@ -99,7 +96,8 @@
                 shopping_cart
               </span>
 
-              <span class="badge badge-secondary badge-pill mr-2" style="font-size: 1rem;">{{quantidadeItensCarrinho}}</span>
+              <span class="badge badge-secondary badge-pill mr-2"
+                style="font-size: 1rem;">{{quantidadeItensCarrinho}}</span>
               Livro(s)
               | Total:
               <span class="badge badge-secondary badge-pill ml-2" style="font-size: 1rem;">
@@ -156,18 +154,17 @@
 
       <div class="jumbotron mt-3">
         <p class="text-muted" style="font-size: 0.9rem; font-weight: bold;">
-          {{book.descricao | slice:0:sliceValor}}
-          <small *ngIf="sliceValor == 1000 && book.descricao.length > sliceValor">...</small>
+          {{book.descricao | slice:0:tamanhoMaximoExibeDescricaoLivro}}
+          <small *ngIf="book.descricao.length > tamanhoMaximoExibeDescricaoLivro">...</small>
         </p>
         <button type="button" class="btn btn-success " *ngIf="book.descricao.length > 1000"
-          (click)="alterarValorSlice()">Ver
+          (click)="exibirDescricaoCompletaLivro()">Ver
           mais</button>
       </div>
     </div>
   </div>
 
   <!-- Relacionados -->
-
   <hr class="py-3 my-5">
   <h2 class="m-1 text-secondary text-justify">Relacionados: </h2>
 
@@ -179,8 +176,8 @@
         </a>
         <div class="card-body text-center">
           <a [routerLink]="[ '/book', bookIt.link ]">
-            <span class="card-title text-center" style="font-size: 0.8rem;"
-              title="{{bookIt.titulo}}">{{bookIt.titulo | slice:0:50}}
+            <span class="card-title text-center" style="font-size: 0.8rem;" title="{{bookIt.titulo}}">{{bookIt.titulo |
+              slice:0:50}}
               <span *ngIf="bookIt.titulo.length > 50">...</span>
               <p class="card-text" style="font-size: 1rem;">
                 <small class="text-muted">
@@ -194,8 +191,8 @@
           </a>
           <strong>
             <p class="mt-2">
-              <span class="text-success"
-                style="font-size: 0.8rem; font-weight: 600;">{{bookIt.preco | currency:'BRL':true}}</span>
+              <span class="text-success" style="font-size: 0.8rem; font-weight: 600;">{{bookIt.preco |
+                currency:'BRL':true}}</span>
             </p>
           </strong>
         </div>

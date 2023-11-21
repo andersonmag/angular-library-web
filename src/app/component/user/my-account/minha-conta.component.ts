@@ -1,5 +1,5 @@
 import { UsuarioService } from 'src/app/service/usuario.service';
-import { Usuario } from './../../../model/usuario';
+import { Usuario } from '../../../model/usuario';
 import { Subject } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 

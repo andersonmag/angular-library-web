@@ -1,6 +1,6 @@
 import { UsuarioService } from 'src/app/service/usuario.service';
-import { Item } from './../../../model/item';
-import { CartService } from './../../../service/cart.service';
+import { Item } from '../../../../model/item';
+import { CartService } from '../../../../service/cart.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 

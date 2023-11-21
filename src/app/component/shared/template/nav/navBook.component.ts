@@ -1,8 +1,8 @@
-import { LoginService } from '../../../service/login.service';
+import { LoginService } from '../../../../service/login.service';
 import { UsuarioService } from 'src/app/service/usuario.service';
 import { Router } from '@angular/router';
-import { Categoria } from '../../../model/Categoria';
-import { BookService } from '../../../service/book.service';
+import { Categoria } from '../../../../model/Categoria';
+import { BookService } from '../../../../service/book.service';
 import { Component, OnInit, AfterViewChecked } from '@angular/core';
 
 @Component({
