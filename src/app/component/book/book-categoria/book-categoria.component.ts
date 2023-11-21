@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '../../../service/book.service';
 import { Component, OnInit } from '@angular/core';
 import { PageConfigBooks } from 'src/app/model/PageConfigBooks';
+import { PaginatePipeArgs } from 'ngx-pagination/dist/paginate.pipe';
 
 @Component({
   selector: 'app-book-categoria',
@@ -12,10 +13,16 @@ import { PageConfigBooks } from 'src/app/model/PageConfigBooks';
 })
 export class BookCategoriaComponent implements OnInit {
 
-  books: Book[]
-  categoria: Categoria
+  books: Book[] = []
+  categoria: Categoria = new Categoria()
   loading: boolean = true
-  config: PageConfigBooks
+  config = {
+    itemsPerPage: 0,
+    currentPage: 0,
+    previousLabel: 'Anterior',
+    nextLabel: 'Próximo',
+    totalItems: 0
+  }
 
   constructor(private bookService: BookService,
     private activatedRoute: ActivatedRoute) { }
@@ -29,7 +36,8 @@ export class BookCategoriaComponent implements OnInit {
       const link = params.link
       this.bookService.obterLivrosPorCategoria(link).subscribe(books => {
         this.books = books['content']
-        this.categoria = books['content'][0]['categoria']
+        this.categoria = this.books[0].categoria
+        console.log(this.categoria)
       })
     });
   }
